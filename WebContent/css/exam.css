@@ -1,0 +1,153 @@
+body{
+    margin: 0px auto;
+    height: auto;
+}
+
+/*>>>>>>>>>Header Section <<<<<<<<<<*/
+
+.row>.header{
+    background-color: #F8F8F8;
+    height: 100px;
+}
+
+.row>.header>.siteLogo{
+     height: 100px;   
+}
+
+
+.row>.header>.siteLogo>img{
+    margin: 0px auto;
+    width: 100px;
+    height: 100px;
+}
+
+.row>.header>.siteLogo>h1{
+    margin: -83px 0px auto;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #0E0B0B;
+    text-shadow: 5px 11px 12px GREY; 
+}
+
+.row>.col-lg-12>.quesdiv{
+	border: 1 solid black;
+	width: 500px;
+	height: 500px;
+}
+
+/*>>>>>>> User Profile Design <<<<<<<<<<*/
+
+
+.row>.col-lg-4{
+    border: 1px solid black;
+    height: 500px;
+    background: linear-gradient(grey, silver);
+}
+
+.row>.col-lg-4>.card{
+    box-shadow: 0 4px 30px 0 rgba(0,0,0,0.5);
+    max-width: 300px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #0089D0;
+}
+
+.row>.col-lg-4>.card>h1{
+    color: white;
+}
+
+.row>.col-lg-4>.card>.title{
+    font-size: 18px;
+    color: white;
+    word-wrap: break-word;
+}
+
+/*>>>>>>>>>> Center Section Design <<<<<<<<<<<<<<<<*/
+
+
+.row>.instructionpage{
+    display: block;
+    height: 500px;
+    border: 1px solid black;
+    background-color: wheat;
+}
+
+.row>.col-lg-8>h1{
+    margin: 50px 0px 0px;
+}
+
+.row>.col-lg-8>#instructionContent>hr{
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
+.row>.col-lg-8>#instructionContent>p{
+    font-size: 23px;
+    margin-left: 20px;
+    
+}
+
+.row>.col-lg-8>#instructionContent>ul>li{
+    font-size: 23px;
+    margin-left: 20px;
+    padding-bottom: 10px;
+}
+
+#acceptTerms{
+    font-size: 20px;
+}
+
+#startBtn{
+    margin: 20px 50px;
+    float: right;
+}
+
+/*>>>>>>>>>Question Displaying Div<<<<<<<<<<*/
+
+.quespage{
+    display: none;
+    border: 1px solid black;
+    height: auto;
+    border: 1px solid black;
+}
+
+
+.quespage>.col-lg-8{
+    height: auto;
+}
+
+.panel{
+    margin-top: -12px;
+}
+/*>>>> Subject title <<<<< */
+
+.row>.col-lg-8>.subtitle{
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+/*>>>>> Bottom buttons margin <<<<<*/
+
+/*.row>.col-lg-8>.btn-group{
+    margin-top: 0px;
+    padding-bottom: 20px;
+}*/
+
+.optionList2, .optionList3, .optionList4, .optionList4, .optionList5{
+    display: none;
+}
+
+.quesSecondSpan, .quesThirdSpan, .quesFourthSpan, .quesFifthSpan{
+    display: none;
+}
+
+.secondQuesSpan, .thirdQuesSpan, .fourthQuesSpan ,.fifthQuesSpan{
+    display: none;
+}
+
+.pagination{
+    margin-top: -4px;
+}
+

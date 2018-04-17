@@ -1,0 +1,53 @@
+body{
+    background: url(../images/Registration-image.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 180px;
+}
+
+#regform{
+	padding: 20px;
+}
+
+span {
+    display: inline-block;
+    height: 20px;
+    transition: 1s;
+}
+
+span.red {
+	background-color: red;
+    width: 50px;
+}
+
+span.yellow {
+    background-color: yellow;
+    width: 100px;
+}
+
+span.green {
+    background-color: green;
+    width: 150px;
+}
+
+#regform>.small{
+    padding: 10px;
+    width: 200px;
+    display: inline;
+}
+
+.radioBtn{
+    margin: 0px 0px 0px 5px;
+}
+
+input[type=radio] {
+    margin: 9px 10px 0px;
+    margin-top: 1px 9px;
+    line-height: normal;
+}
+
+textarea{
+    width: 100%;
+}
+

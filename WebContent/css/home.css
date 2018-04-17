@@ -1,0 +1,100 @@
+@CHARSET "ISO-8859-1";
+body{
+    padding: 100px;
+    background-image: url(../images/bg-pattern.jpg); 
+}
+
+#status{
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+#newspan{
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.thumbnail{
+	height: 200px;
+	width: 200px;
+}
+.thumbnail>img{
+    background: rgba(0,0,0,.0001);
+}
+
+.label-success{
+    padding: .7em .9em .9em;
+    font-size: 105%;
+    margin-right: 10px;
+}
+
+.btn-info{
+    padding: .3em .9em .9em;
+    font-size: 105%;
+    font-weight: 700;
+    
+}
+
+/************** Footer Design *********************/
+
+#footer{
+	padding: 20px 0px;
+	background: #06263f;
+	margin-top: 35%;
+	height: 200px;
+    color: #ffffff;
+}
+
+
+#footer .footer-social{
+    margin-top: 50px;
+    text-align: center;
+}
+
+#footer .footer-social ul li{
+    list-style: none;
+    display: inline;
+    color: white;
+}
+
+#footer .footer-social ul li a{
+    padding: 5px;
+    color: white;
+}
+
+#footer .footer-content{
+    text-align: center;
+}
+
+#footer .footer-content a{
+    padding: 5px;
+    color: white;
+}
+
+
+#footer .footer-content a:link{
+    padding: 5px;
+    color: white;
+}
+
+#footer .footer-content a:hover{
+    color: dodgerblue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#footer .footer-cpyright p>a{
+    color: white;
+    font-weight: bold;
+}
+
+
+#footer .footer-cpyright p>a:hover{
+    text-decoration: none;
+}
+
+#footer .footer-cpyright{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 28px;
+}

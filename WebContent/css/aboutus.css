@@ -1,0 +1,110 @@
+/*Logo Positioning*/
+
+.navbar-brand>img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: -13px 38px -30px -58px
+}
+
+
+
+/*Main-content designing*/
+.main-container{
+    height: 500px;
+    margin-top: 80px;
+}
+
+.main-container>.row>.col-lg-12>h1{
+    font-family: 'Raleway';
+    font-weight: normal;
+    word-break: break-word;
+}
+
+.main-container>.row>.col-lg-12>p{
+    font-size: 18px;
+    text-align: justify;
+    line-height: 1.8em;
+    font-family: 'Raleway';
+    word-break: break-word;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.main-container>.row>.col-lg-12>p>img{
+    float: left;
+}
+/*>>>>>>>>>>>Footer Design <<<<<<<<<<<<<<*/
+
+#footer{
+	padding: 20px 0px;
+	background: #06263f;
+	margin-top: 45%;
+	height: 200px;
+    color: #ffffff;
+}
+
+
+#footer .footer-social{
+    margin-top: 50px;
+    text-align: center;
+}
+
+#footer .footer-social ul li{
+    list-style: none;
+    display: inline;
+    color: white;
+}
+
+#footer .footer-social ul li a{
+    padding: 5px;
+    color: white;
+}
+
+#footer .footer-content{
+    text-align: center;
+}
+
+#footer .footer-content a{
+    padding: 5px;
+    color: white;
+}
+
+
+#footer .footer-content a:link{
+    padding: 5px;
+    color: white;
+}
+
+#footer .footer-content a:hover{
+    color: dodgerblue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#footer .footer-cpyright p>a{
+    color: white;
+    font-weight: bold;
+}
+
+
+#footer .footer-cpyright p>a:hover{
+    text-decoration: none;
+}
+
+/*
+#footer .footer-content a:visited{
+    color: black;
+}
+
+#footer .footer-content a:active{
+    color: grey;
+}*/
+
+
+#footer .footer-cpyright{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 28px;
+}
+

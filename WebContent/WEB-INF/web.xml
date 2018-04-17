@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<element>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>OnlineTestProject</display-name>
+  <jsp-config>
+    <taglib>
+        <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+        <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  	<servlet-name>LoginController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginController</servlet-name>
+  	<url-mapping>/Login</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>RegisterationController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.RegisterationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RegisterationController</servlet-name>
+  	<url-mapping>/Registration</url-mapping>
+  </servlet-mapping>  
+  <error-page>
+    <exception-type>java.sql.SQLException</exception-type>
+    <location>/error.html</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error.html</location>
+  </error-page>
+  <filter-mapping>  
+   <filter-name>NoCacheFilter</filter-name>  
+   <servlet-name>LoginController</servlet-name>  
+  </filter-mapping>
+  <session-config>
+  	 <session-timeout>15</session-timeout>
+  </session-config>
+</web-app>
+<!-- https://mvnrepository.com/artifact/taglibs/standard -->
+<dependency>
+    <groupId>taglibs</groupId>
+    <artifactId>standard</artifactId>
+    <version>1.1.2</version>
+</dependency>
+
+</element>

@@ -1,0 +1,313 @@
+@CHARSET "ISO-8859-1";
+
+body{
+    font-family: "open_sansregular"
+}
+
+/*Logo Positioning*/
+
+.navbar-brand>img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: -13px 38px -30px -58px
+}
+
+/*>>>>>>>Banner Carousel Section<<<<<<<<*/
+
+#carousel-example-generic{
+    width: 100%;
+    height: 500px;
+}
+
+.carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: 500px;
+}
+
+.carousel-inner>.item> .carousel-caption{
+    font-size: 40px;
+    font-weight: 700;
+    
+}
+
+.carousel-inner>.item> .homepagecaption{
+    font-size: 40px;
+    font-weight: 700;
+    color: #0E0B0B;
+    opacity: 5.5;
+    text-shadow: 0px 2px 14px white;
+}
+
+/*
+#showcase{
+    min-height: 620px;
+    height: 500px;
+	background: url(../images/homepageImage.jpg), no-repeat center;
+	background-size: cover;
+    color: #ffffff;    
+    
+}
+
+
+/*
+#showcase h5{
+    margin-top: 100px;
+    font-size: 55px;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0px 7px 4px rgba(0,0,0,0.4),
+                 0px 8px 13px rgba(0,0,0,0.1),
+                 0px 18px 23px rgba(0,0,0,0.1);    
+}
+
+#showcase p{
+    font-size: 20px;
+}
+*/
+
+/*>>>>>>>>How it works section<<<<<<<<*/
+
+.wrapper-fix{
+    width: 1103px;
+    margin: 0px auto;
+}
+
+.box-main-heading{
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 55px 0 0px 0;
+}
+
+.box-main-heading > h2{
+    font-size: 35px;
+    color: #444;
+    display: block;
+    text-align: center;
+
+}
+
+.product-box{
+/*    border: 2px solid black;*/
+    width: 100%;
+    height: 200px;
+    padding: 35px 0 20px;
+    float: left;
+}
+
+.hw_wrk{
+    display: inline-block;
+    width: 12%;
+    float: left;
+    z-index: 3;
+    position: relative;
+    background: #fff;
+}
+
+.circleshvr{
+    width: 120px;
+    height: 120px;
+    border: 2px solid #a8a8a8;
+    border-radius: 100%;
+    display: inline-block;
+}
+
+.sprite3{
+    background: url(../images/HowItWorksSection/sprite3.png);
+}
+
+.que_database{
+    display: inline-block;
+    border-radius: 100%;
+    width: 117px;
+    height: 117px;
+    background-position: -109px 0px;
+    transition: all .4s ease;
+    
+}
+
+
+.que_database:hover{
+    display: inline-block;
+    border-radius: 100%;
+    width: 117px;
+    height: 117px;
+    background-position: 8px 4px;
+    transition: all .4s ease;
+    border: 1px solid blue;
+}
+
+.test_design{
+    display: inline-block;
+    border-radius: 100%;
+    width: 117px;
+    height: 117px;
+    background-position: -120px -94px;
+    transition: all .4s ease;
+}
+
+.test_design:hover{
+    background-position: -5px -92.5px;
+    border: 1px solid blue;
+}
+
+.take_test{
+    height: 117px;
+    width: 117px;
+    border-radius: 100%;
+    background-position: -375px -94px;
+    display: inline-block;
+    transition: all .4s ease;
+}
+
+.take_test:hover{
+    border: 1px solid blue;
+    background-position: -235px -94px;
+}
+
+.get_result{
+    height: 117px;
+    width: 117px;
+    display: inline-block;
+    transition: all .4s ease;
+    border-radius: 100%;
+    background-position: -391px 5px;
+}
+
+.get_result:hover{
+    border: 1px solid blue;
+    background-position: -290px 5px;
+}
+
+
+
+.hw_wrk_text{
+  font-size: 20px;
+  text-align: center;
+  margin: 12px 0px;
+  color: #0E0B0B;
+  opacity: 5.5;
+  text-shadow: 0px 2px 14px white;
+}
+
+img{
+    border: 0;
+    
+}
+
+.wrk_nxt{
+    float: left;
+    margin: 37px 29px;
+    z-index: 0;
+}
+
+.slideInLeft.slideleft{
+    animation-delay: 1s;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-timing-function: ease-out;
+}
+
+.slideInLeft.slideleft1{
+    animation-delay: 1.4s;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-timing-function: ease-out;
+}
+
+
+.slideInLeft.slideleft2{
+    animation-delay: 1.8s;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-timing-function: ease-out;
+}
+
+
+.slideInLeft.slideleft3{
+    animation-delay: 1.4s;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-timing-function: ease-out;
+}
+@keyframes slideInLeft{
+    0%{
+          transform: translate3d(-100%,0,0);
+           visibility: hidden;
+            opacity: 0.1;
+    }
+    50%{
+        opacity: .5;
+    }
+    100%{
+        transform: translate3d(0,0,0);
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/*>>>>>>>>>>>Footer Design <<<<<<<<<<<<<<*/
+
+#footer{
+	padding: 20px 0px;
+	background: #06263f;
+	margin-top: 35%;
+	height: 200px;
+    color: #ffffff;
+}
+
+
+#footer .footer-social{
+    margin-top: 50px;
+    text-align: center;
+}
+
+#footer .footer-social ul li{
+    list-style: none;
+    display: inline;
+    color: white;
+}
+
+#footer .footer-social ul li a{
+    padding: 5px;
+    color: white;
+}
+
+#footer .footer-content{
+    text-align: center;
+}
+
+#footer .footer-content a{
+    padding: 5px;
+    color: white;
+}
+
+
+#footer .footer-content a:link{
+    padding: 5px;
+    color: white;
+}
+
+#footer .footer-content a:hover{
+    color: dodgerblue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#footer .footer-cpyright p>a{
+    color: white;
+    font-weight: bold;
+}
+
+
+#footer .footer-cpyright p>a:hover{
+    text-decoration: none;
+}
+
+#footer .footer-cpyright{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 28px;
+}
+
+
+

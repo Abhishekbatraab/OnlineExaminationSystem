@@ -1,0 +1,30 @@
+@CHARSET "ISO-8859-1";
+img{
+    width: 200px;
+    height: 200px;
+    /*margin: 100px 200px 280px 470px;*/
+    margin-left: 40px;
+}
+
+.box{
+    border: 2px solid black;
+    margin: 50px;
+    padding-bottom: 80px;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    font-family: 'Supermercado One', cursive;
+}
+p{
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+.lgbtn{
+     margin-left: 20px;   
+}
