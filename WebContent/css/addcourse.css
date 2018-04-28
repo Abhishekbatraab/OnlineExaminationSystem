@@ -1,0 +1,23 @@
+@CHARSET "ISO-8859-1";
+body{
+    background: url(../images/PU_Courses.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.9;
+}
+        
+label{
+    color: black;
+}
+        
+.bgcourse{
+    color: black;
+}
+        
+.button{
+    color: black;
+}
+
+
+
+

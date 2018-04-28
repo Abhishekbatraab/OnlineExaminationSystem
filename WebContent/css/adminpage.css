@@ -1,0 +1,44 @@
+@CHARSET "ISO-8859-1";
+/*.row>.firstdiv{
+    background-color: red;
+    height: 500px;
+}
+
+.row>.seconddiv{
+    background-color: green;
+    height: 500px;
+}*/
+
+.courseDiv{
+    height: 500px;
+    margin-left: 191px;
+    color: black;
+}
+
+.col-lg-6{
+    border: 1px solid black;
+    height: 500px;
+    /*background-color: grey;*/
+    
+}
+
+.row>.partition1{
+    margin-left:50px;
+}
+
+.row>.partition1>.courseDetails{
+    padding: 50px;
+}
+
+.row>.partition1>.courseDetails>table{
+    margin-top: 20px;
+}
+.row>.partition1>.courseDetails>table>thead>tr>th{
+    padding: 10px;
+}
+
+.row>.partition2{
+    margin-left: -50px;
+    float:left;
+}
+

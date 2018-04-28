@@ -43,7 +43,7 @@ public class ExamController extends HttpServlet {
     	ArrayList<QuestionDTO> quizQuesList = quesdao.getTestData(testName);
     	req.setAttribute("quizQuesList", quizQuesList);
     	req.setAttribute("userdetails", userdto);    	
-    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/examnew.jsp");
+    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/exam.jsp");
     	dispatcher.forward(req, resp);    	
     }
     

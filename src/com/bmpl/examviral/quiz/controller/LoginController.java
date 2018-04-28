@@ -78,12 +78,16 @@ public class LoginController extends HttpServlet implements LoginDAO {
 					}else if(role.equals("admin"))
 					{
 						ArrayList<UserDTO> userList = userdao.readAllRecords();
+						/*ArrayList<CourseDTO> courseList = coursedao.readCourse();*/
 						System.out.println("User List is "+userList);
 						HttpSession session = req.getSession(true);
-						session.setAttribute("userList", userList);
 						session.getMaxInactiveInterval();
 						if(session!=null || session.getAttribute("userObject")!=null){
 							//System.out.println("Admin Login");
+							session.setAttribute("email", email);
+							session.setAttribute("role", role);
+							session.setAttribute("username", username);
+							session.setAttribute("userList", userList);
 							RequestDispatcher rd = req.getRequestDispatcher("adminpage.jsp");
 							rd.forward(req, resp);
 						}
