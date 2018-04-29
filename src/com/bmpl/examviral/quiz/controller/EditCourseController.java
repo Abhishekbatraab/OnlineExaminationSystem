@@ -3,16 +3,15 @@ package com.bmpl.examviral.quiz.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -22,10 +21,10 @@ import com.bmpl.examviral.quiz.model.dao.CourseDAO;
 import com.bmpl.examviral.quiz.model.dto.CourseDTO;
 
 /**
- * Servlet implementation class CourseController
+ * Servlet implementation class EditCourseController
  */
-@WebServlet("/AddCourse")
-public class AddCourseController extends HttpServlet {
+@WebServlet("/EditCourse")
+public class EditCourseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final String UPLOAD_DIRECTORY = "CourseImages";
 	private static final int MEMORY_THRESHOLD 	= 1024 * 1024 * 3; 	// 3MB
@@ -33,16 +32,14 @@ public class AddCourseController extends HttpServlet {
 	private static final int MAX_REQUEST_SIZE	= 1024 * 1024 * 50; // 50MB
 	CourseDTO coursedto = new CourseDTO();
 	CourseDAO coursedao = new CourseDAO();
-
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddCourseController() {
+    public EditCourseController() {
         super();
         // TODO Auto-generated constructor stub
     }
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -163,26 +160,34 @@ public class AddCourseController extends HttpServlet {
 					"There was an error: " + ex.getMessage());
 		}
 		
-		
 		try {
-			int result = coursedao.addCourse(coursedto);
-			System.out.println("Result is"+result);			
+			int courseId = Integer.parseInt(request.getParameter("courseId"));
+			coursedto.setSubId(courseId);
+			System.out.println("Course id in controller is "+courseId);
+			System.out.println("Value of course dto in controller is " +coursedto);
+			int result = coursedao.updateSpecificRecord(coursedto);
+			System.out.println("Result is "+result);			
 			if(result>=1){
-				System.out.println("Course Added successfully");
-				String status= result+" course added successfully";
-				request.setAttribute("message", status);
-				response.sendRedirect("courses.jsp?message="+status);				
-				System.out.println("CourseDto is"+coursedto.toString());
+				System.out.println("Course Updated successfully");
+				String message = result + " records updated successfully";
+				response.sendRedirect("editcourse.jsp?courseId="+coursedto.getSubId()+"&message="+message);
+				
 			}
 			else{
-				System.out.println("Course Not added");
-				String status="course not added!";
-				response.sendRedirect("courses.jsp?message="+status);
+				System.out.println("Course Not updated");
+				String message="course not updated!";
+				request.setAttribute("message", message);
+				response.sendRedirect("editcourse.jsp?courseId="+coursedto.getSubId()+"&message="+message);
 			}
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			System.out.println("Some error");
 		}
+		
+		
+		
+		
 		
 	}
 

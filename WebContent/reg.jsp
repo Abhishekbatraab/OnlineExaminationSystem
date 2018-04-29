@@ -34,7 +34,7 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		         	 <li><a href="login.jsp">Student Login</a></li>
-		            <li><a href="#">Admin Login</a></li>
+		            <li><a href="adminLogin.jsp">Admin Login</a></li>
 		          </ul>
 		        </li>
 		        <li><a href="reg.jsp">Sign Up <i class="fas fa-user-plus"></i></a>

@@ -45,14 +45,19 @@
     <meta name="author" content="">
     <link rel="icon" href="./favicon-16x16.png">
     <title>Courses</title>
-
+	
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
+	<!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <link rel="stylesheet" href="css/addcourse.css">
+    <!-- Data tables css -->
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"></link>
+    <!-- Angular JS -->
     <script src="js/angular.min.js"></script>
+    
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -64,18 +69,21 @@
         app.controller('mycontroller', function ($scope) {
             //This will hide the DIV by default.
             $scope.IsVisible = false;
-            $scope.viewcoursevisible = false;
+            $scope.viewcoursevisible = true;
+            $scope.viewHeading = "List of Courses";
             $scope.ShowHide = function () {
                 //If DIV is visible it will be hidden and vice versa.
-                $scope.IsVisible = $scope.IsVisible ? false : true;
+                $scope.IsVisible = true;
                 $scope.viewcoursevisible = false;
+                
             }
             $scope.ShowHideView = function(){
             	//If DIV is visible it will be hidden and vice versa.
-                $scope.viewcoursevisible = $scope.viewcoursevisible ? false : true;
+            	$scope.viewHeading = "View Courses";
+                $scope.viewcoursevisible = true;
             	$scope.IsVisible = false;
-            }
-            
+            	
+            }            
        });
     </script>
   </head>
@@ -112,14 +120,11 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="adminpage.jsp">Dashboard<span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="#">Course Details</a></li>
+            <li class="active"><a href="courses.jsp">Course Details</a></li>
             <li><a href="javascript:void(0);" ng-click="ShowHideView()">View Courses</a></li>
             <li><a href="javascript:void(0);" ng-click="ShowHide()">Add Courses</a></li>
-            <!-- <li><a href="#" ng-click="ShowHide"><input type="button" value="Add Courses" ng-click="ShowHide()" /></a></li> -->
-            <li><a href="#">Edit Courses</a></li>
             <li><a href="#">Remove Courses</a></li>
-            
-            <li><a href="#">Questions</a></li>
+          	<li><a href="#">Questions</a></li>
             <li><a href="#">User Accounts</a></li>
           </ul>
           <ul class="nav nav-sidebar">
@@ -166,9 +171,9 @@
 	         
 	       </div>
 	       <div ng-show="viewcoursevisible">
-	       		<h1>View Courses</h1>
+	       		<h1 ng-model="viewHeading">{{viewHeading}}</h1>
 	       		<div class="table-responsive">
-	            <table class="table table-striped">
+	            <table id="example" class="table table-striped table-bordered" style="width:100%">
 	              <thead>
 	                <tr>
 	                  <th>CourseId</th>
@@ -176,6 +181,7 @@
 	                  <th>Title</th>
 	                  <th>Details</th>
 	                  <th>Register Date</th>	              
+	                  <th>Action</th>
 	                </tr>
 	              </thead>
 	              
@@ -186,16 +192,26 @@
 	                	 
 	                	<tr>
 							<td><c:out value="${courseList.subId }"/></td>
-							<td><img src="<c:out value="${courseList.imagePath}"/>"></img>"</td>
+							<td><img src="<c:out value="${courseList.imagePath}"/>"></img></td>
 							<td><c:out value="${courseList.title}"/></td>
 							<td><c:out value="${courseList.details}"/></td>
 							<td><c:out value="${courseList.register_date}"/></td>
+							<td>
+								<table>
+									<tr>
+										<td class="editbtn"><a href="editcourse.jsp?courseId=${courseList.subId}">Edit</a></td>
+										<td class="deletebtn"><a>Delete</a></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 					</c:forEach>
 	             </tbody>
 	            </table>
+	       </div>
 	       </div> 
-        </div> 
+        </div>
+        	         
 
           
     </div><!--Container-fluid division end -->
@@ -208,6 +224,11 @@
     <script src="./js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="./js/holder.min.js"></script>
+    <!-- Data Table JS -->
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/datatable.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
    
+    
   </body>
 </html>

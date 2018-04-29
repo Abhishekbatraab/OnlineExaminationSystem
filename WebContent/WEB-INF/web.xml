@@ -36,6 +36,14 @@
   	<servlet-name>AddCourseController</servlet-name>
   	<url-mapping>/AddCourse</url-mapping>
   </servlet-mapping>  
+  <servlet>
+  	<servlet-name>EditCourseController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.EditCourseController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditCourseController</servlet-name>
+  	<url-mapping>/EditCourse</url-mapping>
+  </servlet-mapping>  
     
   <error-page>
     <exception-type>java.sql.SQLException</exception-type>
