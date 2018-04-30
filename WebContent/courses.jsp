@@ -123,7 +123,6 @@
             <li class="active"><a href="courses.jsp">Course Details</a></li>
             <li><a href="javascript:void(0);" ng-click="ShowHideView()">View Courses</a></li>
             <li><a href="javascript:void(0);" ng-click="ShowHide()">Add Courses</a></li>
-            <li><a href="#">Remove Courses</a></li>
           	<li><a href="#">Questions</a></li>
             <li><a href="#">User Accounts</a></li>
           </ul>
@@ -191,7 +190,7 @@
 	                <c:forEach var="courseList" items="${requestScope.courselist}">
 	                	 
 	                	<tr>
-							<td><c:out value="${courseList.subId }"/></td>
+							<td><c:out value="${courseList.courseId }"/></td>
 							<td><img src="<c:out value="${courseList.imagePath}"/>"></img></td>
 							<td><c:out value="${courseList.title}"/></td>
 							<td><c:out value="${courseList.details}"/></td>
@@ -199,8 +198,8 @@
 							<td>
 								<table>
 									<tr>
-										<td class="editbtn"><a href="editcourse.jsp?courseId=${courseList.subId}">Edit</a></td>
-										<td class="deletebtn"><a>Delete</a></td>
+										<td class="editbtn"><a href="editcourse.jsp?courseId=${courseList.courseId}">Edit</a></td>
+										<td class="deletebtn"><a href="DeleteCourse?courseId=${courseList.courseId}">Delete</a></td>
 									</tr>
 								</table>
 							</td>

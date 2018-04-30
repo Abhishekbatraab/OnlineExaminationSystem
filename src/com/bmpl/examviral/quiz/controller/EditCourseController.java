@@ -162,7 +162,7 @@ public class EditCourseController extends HttpServlet {
 		
 		try {
 			int courseId = Integer.parseInt(request.getParameter("courseId"));
-			coursedto.setSubId(courseId);
+			coursedto.setcourseId(courseId);
 			System.out.println("Course id in controller is "+courseId);
 			System.out.println("Value of course dto in controller is " +coursedto);
 			int result = coursedao.updateSpecificRecord(coursedto);
@@ -170,14 +170,14 @@ public class EditCourseController extends HttpServlet {
 			if(result>=1){
 				System.out.println("Course Updated successfully");
 				String message = result + " records updated successfully";
-				response.sendRedirect("editcourse.jsp?courseId="+coursedto.getSubId()+"&message="+message);
+				response.sendRedirect("editcourse.jsp?courseId="+coursedto.getcourseId()+"&message="+message);
 				
 			}
 			else{
 				System.out.println("Course Not updated");
 				String message="course not updated!";
 				request.setAttribute("message", message);
-				response.sendRedirect("editcourse.jsp?courseId="+coursedto.getSubId()+"&message="+message);
+				response.sendRedirect("editcourse.jsp?courseId="+coursedto.getcourseId()+"&message="+message);
 			}
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block

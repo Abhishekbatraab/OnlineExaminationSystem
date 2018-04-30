@@ -15,6 +15,7 @@ public class CourseDAO implements ConnectionDAO{
 	private ResultSet rs = null;
 	private int result;
 	ArrayList<CourseDTO> courseList = new ArrayList<CourseDTO>();
+	ArrayList<CourseDTO> courseNamesList = new ArrayList<CourseDTO>();
 	CourseDTO coursedto = new CourseDTO();
 	public int addCourse(CourseDTO coursedto){
 		try {
@@ -34,22 +35,33 @@ public class CourseDAO implements ConnectionDAO{
 		
 	}
 	
-	public void deleteCourse(){
-		
+	public int deleteCourse(int courseId){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "delete from course where courseId = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, courseId);
+			result = ps.executeUpdate();
+			return result;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	public int updateSpecificRecord(CourseDTO coursedto){
 		try {
 			System.out.println("Course dto in update db is "+coursedto);
 			con = ConnectionDAO.getConnection();
-			String sql = "update course set imagePath = ?, title = ?, details = ?, register_date= ? where subId = ? ";
+			String sql = "update course set imagePath = ?, title = ?, details = ?, register_date= ? where courseId = ? ";
 			java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 			ps = con.prepareStatement(sql);
 			ps.setString(1, coursedto.getImagePath());
 			ps.setString(2, coursedto.getTitle());
 			ps.setString(3, coursedto.getDetails());
 			ps.setTimestamp(4, date);
-			ps.setInt(5, coursedto.getSubId());
+			ps.setInt(5, coursedto.getcourseId());
 			result = ps.executeUpdate();
 			return result;
 			
@@ -63,12 +75,12 @@ public class CourseDAO implements ConnectionDAO{
 	public ArrayList<CourseDTO> readCourse(){
 		try {
 			con = ConnectionDAO.getConnection();
-			String sql = "select subId, imagePath, title, details, register_date from course";
+			String sql = "select courseId, imagePath, title, details, register_date from course";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
 				CourseDTO coursedto = new CourseDTO();
-				coursedto.setSubId(rs.getInt(1));
+				coursedto.setcourseId(rs.getInt(1));
 				coursedto.setImagePath(rs.getString(2));
 				coursedto.setTitle(rs.getString(3));
 				coursedto.setDetails(rs.getString(4));
@@ -89,13 +101,12 @@ public class CourseDAO implements ConnectionDAO{
 	public CourseDTO getSpecificRecord(int courseId){
 			try {
 				con = ConnectionDAO.getConnection();
-				String sql = "Select * from course where subId = ?";
+				String sql = "Select * from course where courseId = ?";
 				ps = con.prepareStatement(sql);
 				ps.setInt(1, courseId);
 				rs = ps.executeQuery();
 				while(rs.next()){
-					
-					coursedto.setSubId(rs.getInt(1));
+					coursedto.setcourseId(rs.getInt(1));
 					coursedto.setImagePath(rs.getString(2));
 					coursedto.setTitle(rs.getString(3));
 					coursedto.setDetails(rs.getString(4));
@@ -113,7 +124,7 @@ public class CourseDAO implements ConnectionDAO{
 	public int getCourseId() throws ClassNotFoundException, SQLException{
 		int courseId=0;
 		con = ConnectionDAO.getConnection();
-		String sql = "Select subId from course";
+		String sql = "Select courseId from course";
 		ps = con.prepareStatement(sql);
 		rs = ps.executeQuery();
 		while(rs.next()){
@@ -122,6 +133,25 @@ public class CourseDAO implements ConnectionDAO{
 		return courseId;
 	}
 	
+	public ArrayList<CourseDTO> getCourseNameList(){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "Select title from course";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				CourseDTO coursedto = new CourseDTO();
+				coursedto.setTitle(rs.getString(2));
+				System.out.println("Get title is "+coursedto.getTitle());
+				courseNamesList.add(coursedto);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("CourseList name is "+courseNamesList);
+		return courseNamesList;
+	}
 	
 	
 

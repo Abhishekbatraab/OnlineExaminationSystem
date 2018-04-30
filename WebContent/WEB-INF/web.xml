@@ -43,8 +43,23 @@
   <servlet-mapping>
   	<servlet-name>EditCourseController</servlet-name>
   	<url-mapping>/EditCourse</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>DeleteCourseController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.DeleteCourseController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteCourseController</servlet-name>
+  	<url-mapping>/DeleteCourse</url-mapping>
   </servlet-mapping>  
-    
+<servlet>
+  	<servlet-name>AddTestController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.testcontrollers.AddTestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddTestController</servlet-name>
+  	<url-mapping>/AddTest</url-mapping>
+  </servlet-mapping>    
   <error-page>
     <exception-type>java.sql.SQLException</exception-type>
     <location>/error.html</location>

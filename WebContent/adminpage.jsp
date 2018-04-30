@@ -83,7 +83,7 @@
             <li><a href="#">Students</a></li>
             <li><a href="courses.jsp">Courses</a></li>
             <li><a href="#">Questions</a></li>
-            <li><a href="#">Test</a></li>
+            <li><a href="test.jsp">Test</a></li>
             <li><a href="#">Results</a></li>                     
           </ul>
           <ul class="nav nav-sidebar">

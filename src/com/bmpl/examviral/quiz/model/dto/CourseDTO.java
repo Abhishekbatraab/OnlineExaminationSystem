@@ -1,7 +1,7 @@
 package com.bmpl.examviral.quiz.model.dto;
 
 public class CourseDTO {
-	private int subId;
+	private int courseId;
 	private String imagePath;
 	private String title;
 	private String details;
@@ -9,14 +9,14 @@ public class CourseDTO {
 	
 	@Override
 	public String toString() {
-		return "CourseDTO [subId=" + subId + ", imagePath=" + imagePath + ", title=" + title + ", details=" + details
+		return "CourseDTO [courseId=" + courseId + ", imagePath=" + imagePath + ", title=" + title + ", details=" + details
 				+ ", register_date=" + register_date + "]";
 	}
-	public int getSubId() {
-		return subId;
+	public int getcourseId() {
+		return courseId;
 	}
-	public void setSubId(int subId) {
-		this.subId = subId;
+	public void setcourseId(int courseId) {
+		this.courseId = courseId;
 	}
 	public String getRegister_date() {
 		return register_date;

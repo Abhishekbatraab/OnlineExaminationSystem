@@ -113,7 +113,7 @@
 		request.setAttribute("courserecord", courserecord);
 		System.out.println("Course record in jsp file"+courserecord);
 	%>
-	<form action="EditCourse?courseId=${courserecord.getSubId()}" method="post" enctype="multipart/form-data" class="form-signin formcontent" >
+	<form action="EditCourse?courseId=${courserecord.getcourseId()}" method="post" enctype="multipart/form-data" class="form-signin formcontent" >
 	    <table>
 	    	 <tr>
 		     	<td><label for="ImageUpload">Browse Image:</label></td>
