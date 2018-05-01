@@ -16,6 +16,7 @@ public class CourseDAO implements ConnectionDAO{
 	private int result;
 	ArrayList<CourseDTO> courseList = new ArrayList<CourseDTO>();
 	ArrayList<CourseDTO> courseNamesList = new ArrayList<CourseDTO>();
+	ArrayList<CourseDTO> courseIdList = new ArrayList<CourseDTO>();
 	CourseDTO coursedto = new CourseDTO();
 	public int addCourse(CourseDTO coursedto){
 		try {
@@ -136,20 +137,22 @@ public class CourseDAO implements ConnectionDAO{
 	public ArrayList<CourseDTO> getCourseNameList(){
 		try {
 			con = ConnectionDAO.getConnection();
-			String sql = "Select title from course";
+			String sql = "select courseId, title from course";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
 				CourseDTO coursedto = new CourseDTO();
+				coursedto.setcourseId(rs.getInt(1));
 				coursedto.setTitle(rs.getString(2));
-				System.out.println("Get title is "+coursedto.getTitle());
 				courseNamesList.add(coursedto);
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+			
+		}catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
-		System.out.println("CourseList name is "+courseNamesList);
+		//System.out.println("Course List fetching from db is "+courseNamesList);
 		return courseNamesList;
 	}
 	

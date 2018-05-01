@@ -27,7 +27,7 @@
 	if(courselist.size()>0){
 		request.setAttribute("courselist", courselist);
 		request.setAttribute("message", "");
-		System.out.println("List of courses"+courselist);
+		//System.out.println("List of courses"+courselist);
 	}
 	else{
 		request.setAttribute("message", "No records found");

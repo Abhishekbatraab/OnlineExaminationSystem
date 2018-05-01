@@ -33,6 +33,7 @@ public class TestDAO implements ConnectionDAO{
 					testdto.setMinMarks(rs.getInt(5));
 					testdto.setTotalMarks(rs.getInt(6));
 					testlist.add(testdto);
+					
 				}
 				
 			} catch (ClassNotFoundException | SQLException e) {
@@ -52,4 +53,6 @@ public class TestDAO implements ConnectionDAO{
 			}
 			return testlist;
 		}
+		
+		
 }
