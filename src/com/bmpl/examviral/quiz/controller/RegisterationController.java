@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bmpl.examviral.quiz.model.dao.RolesDAO;
 import com.bmpl.examviral.quiz.model.dao.UserDAO;
 import com.bmpl.examviral.quiz.model.dto.UserDTO;
 
@@ -19,7 +21,7 @@ import com.bmpl.examviral.quiz.model.dto.UserDTO;
 @WebServlet("/Registration")
 public class RegisterationController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,6 +46,7 @@ public class RegisterationController extends HttpServlet{
 		String dateofbirth = request.getParameter("dob");
 		String address = request.getParameter("address");
 		String institutename = request.getParameter("institutename");
+		RolesDAO rolesdao = new RolesDAO();
 		UserDTO userdto = new UserDTO();
 		userdto.setEmail(email);
 		userdto.setUsername(username);
@@ -63,6 +66,8 @@ public class RegisterationController extends HttpServlet{
 			}
 			else{
 				userdto.setRoleName("student");
+				String roleName = rolesdao.checkRole(userdto);
+				userdto.setRoleName(roleName);
 				userdao.addUser(userdto);
 				userdao.insertUserLogin(userdto);
 				int userId = userdao.takeUserId(userdto);

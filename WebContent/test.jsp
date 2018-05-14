@@ -46,7 +46,23 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/adminpage.css" rel="stylesheet"></link>
     
-    <!-- <script src="js/angular.min.js"></script> -->
+    <!-- Angular JS -->
+    <script src="js/angular.min.js"></script>
+    
+    <script type="text/javascript">
+    	const app = angular.module("myapp", []);
+        app.controller('mycontroller', function ($scope) {
+            //This will hide the DIV by default.
+            $scope.testdatadiv = true;
+            $scope.AddTestDiv = false;
+            $scope.showTestDiv = function () {
+                //If DIV is visible it will be hidden and vice versa.
+                $scope.AddTestDiv = true;
+                $scope.testdatadiv = false;            
+            }
+       });
+    </script>
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -55,7 +71,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body ng-app="myapp" ng-controller="mycontroller">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -107,11 +123,55 @@
 	          </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	          <h1 class="page-header">Manage Tests <span class="after">Total Tests: <c:out value="${testlist.size()}"></c:out></span></h1>
-	      	  <div>
+	          <h1 class="page-header">Manage Tests <span class="after">Total Tests: <span><%= testlist.size() %></span></span></h1>
+	          <div ng-show="testdatadiv">
+	       		<h1 ng-model="viewHeading">View Tests</h1>
+	       		<div class="table-responsive">
+	            <table id="example" class="table table-striped table-bordered" style="width:100%">
+	              <thead>
+	                <tr>
+	                  <th>Test Id</th>
+	                  <th>courseId</th>
+	                  <th>Test Name</th>
+	                  <th>Test Timing</th>
+	                  <th>Minimum Marks</th>	              
+	                  <th>Total Marks</th>
+	                  <th>Action</th>
+	                </tr>
+	              </thead>
+	              <tbody> 
+	              <tr><c:out value="${requestScope.message}"></c:out></tr>  	
+	              	
+	                <c:forEach var="testList" items="${requestScope.testlist}">
+	                	 
+	                	<tr>
+							<td><c:out value="${testList.testId }"/></td>
+							<td><c:out value="${testList.courseId}"/></td>
+							<td><c:out value="${testList.testName}"/></td>
+							<td><c:out value="${testList.testDuration}"></c:out>
+							<td><c:out value="${testList.minMarks}"/></td>
+							<td><c:out value="${testList.totalMarks}"/></td>
+							<td>
+								<table>
+									<tr>
+										<td class="editbtn"><a>Edit</a></td>
+										<td class="deletebtn"><a>Delete</a></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</c:forEach>
+	             </tbody>
+	            </table>
+	            <button class="orange" ng-click="showTestDiv()">New Test +</button>
+	       		</div>          
+        </div>
+        	  
+	      	  <div ng-show="AddTestDiv">
+	      	  	
 			  	<form class="form-horizontal" action="AddTest" method="post">
 					  <div class="form-group">
-					    <label for="courseidname" class="col-sm-2 control-label">Course Id & Course Name</label>
+					    <label for="courseidname" class="col-sm-2 control-label">Course Id and Course Name</label>
 					    <div class="col-sm-10">
 					      <select class="form-control" name="courseNameDropDown" id="courseidname">
 									<option>Select Course</option>
@@ -127,112 +187,41 @@
 					  <div class="form-group">
 					    <label for="testname" class="col-sm-2 control-label">Test Name</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="testname" placeholder="Same as course Name">
+					      <input type="text" class="form-control" id="testname" name="testName" placeholder="Same as course Name">
 					    </div>
 					  </div>
-					  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-						  <div class="panel panel-default">
-						    <div class="panel-heading" role="tab" id="headingOne">
-							      <h4 class="panel-title">
-							        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-							          Questions
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-							      <div class="panel-body">
-							        Question No
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading" role="tab" id="headingTwo">
-							      <h4 class="panel-title">
-							        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							          Question String
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-							      <div class="panel-body">
-							        1
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading" role="tab" id="headingThree">
-							      <h4 class="panel-title">
-							        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-							         option1
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-							      <div class="panel-body">
-							        option2
-							      </div>
-							    </div>
-							  </div>
-							</div>
 					  <div class="form-group">
-					    <label for="minmarks" class="col-sm-2 control-label">Minimum Marks</label>
+					    <label for="testtime" class="col-sm-2 control-label">Test Duration (Minutes)</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="minmarks" name="minMarks" placeholder="Enter Minimum Marks">
+					      <input type="text" class="form-control" id="testtime" name="testDuration" placeholder="Enter test duration">
 					    </div>
 					  </div>
-					  <div class="form-group">
-					    <label for="maxmarks" class="col-sm-2 control-label">Maximum Marks</label>
-					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="maxmarks" name="minMarks" placeholder="Enter Maximum Marks">
+					  
+						<div class="form-group">
+						   <label for="minmarks" class="col-sm-2 control-label">Minimum Marks</label>
+						   <div class="col-sm-10">
+						      <input type="text" class="form-control" id="minmarks" name="minMarks" placeholder="Enter Minimum Marks">
+						   </div>
+						</div>
+						<div class="form-group">
+							<label for="maxmarks" class="col-sm-2 control-label">Maximum Marks</label>
+							<div class="col-sm-10">
+						      <input type="text" class="form-control" id="maxmarks" name="maxMarks" placeholder="Enter Maximum Marks">
+						    </div>
 					    </div>
-					  </div>
-					  <div class="form-group">
-					    <div class="col-sm-offset-2 col-sm-10">
-					      <button type="submit" class="btn btn-default">Add Test</button>
+						<div class="form-group">
+						   <div class="col-sm-offset-2 col-sm-10">
+							      <button type="submit" class="btn btn-default">Add Test</button>
+						   </div>
 					    </div>
-					  </div>
-				</form>
-				
+			</div>
+					  
+			</form>
+			<button class="btn btn-default orange" ng-click="ShowQuesDiv()" ng-show="addquesbtn">Start adding Questions +</button>
+			
+							
 		</div>
-		<div ng-show="testdatadiv">
-	       		<h1 ng-model="viewHeading">View Tests</h1>
-	       		<div class="table-responsive">
-	            <table id="example" class="table table-striped table-bordered" style="width:100%">
-	              <thead>
-	                <tr>
-	                  <th>Test Id</th>
-	                  <th>courseId</th>
-	                  <th>Test Name</th>
-	                  <th>Test Timing</th>
-	                  <th>Minimum Marks</th>	              
-	                  <th>Total Marks</th>
-	                </tr>
-	              </thead>
-	              <tbody> 
-	              <tr><c:out value="${requestScope.message}"></c:out></tr>  	
-	              	
-	                <c:forEach var="testList" items="${requestScope.testlist}">
-	                	 
-	                	<tr>
-							<td><c:out value="${testList.testId }"/></td>
-							<td><c:out value="${testList.courseId}"/></td>
-							<td><c:out value="${testList.testName}"/></td>
-							<td><c:out value="${testList.minMarks}"/></td>
-							<td><c:out value="${testList.totalMarks}"/></td>
-							<td>
-								<table>
-									<tr>
-										<td class="editbtn"><a>Edit</a></td>
-										<td class="deletebtn"><a>Delete</a></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</c:forEach>
-	             </tbody>
-	            </table>
-	       		</div>          
-        </div>
+		
       </div>
     </div>
 	

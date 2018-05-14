@@ -79,7 +79,7 @@
             }
             $scope.ShowHideView = function(){
             	//If DIV is visible it will be hidden and vice versa.
-            	$scope.viewHeading = "View Courses";
+            	$scope.viewHeading = "View Courses";	
                 $scope.viewcoursevisible = true;
             	$scope.IsVisible = false;
             	

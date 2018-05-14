@@ -29,7 +29,6 @@ public interface LoginDAO extends ConnectionDAO {
 		String emailDB = "";
 		String passwordDB = "";
 		String roleDB = "";
-		
 		try {
 			con = ConnectionDAO.getConnection();
 			String sql = "select email, password, rolename from userlogin";
@@ -63,8 +62,6 @@ public interface LoginDAO extends ConnectionDAO {
 			}
 		}
 		return "Invalid user credentials";
-		
-		
 	}
 	
 	/*

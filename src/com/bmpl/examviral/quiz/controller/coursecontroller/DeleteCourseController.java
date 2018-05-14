@@ -1,4 +1,4 @@
-package com.bmpl.examviral.quiz.controller;
+package com.bmpl.examviral.quiz.controller.coursecontroller;
 
 import java.io.IOException;
 

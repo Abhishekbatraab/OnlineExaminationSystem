@@ -12,6 +12,7 @@ public class TestDAO implements ConnectionDAO{
 		private Connection con=null;
 		private PreparedStatement ps = null;
 		private ResultSet rs = null;
+		int noofrows = 0;
 		TestDTO testdto = new TestDTO();
 		ArrayList<TestDTO> testlist = new ArrayList<>();
 		
@@ -33,7 +34,6 @@ public class TestDAO implements ConnectionDAO{
 					testdto.setMinMarks(rs.getInt(5));
 					testdto.setTotalMarks(rs.getInt(6));
 					testlist.add(testdto);
-					
 				}
 				
 			} catch (ClassNotFoundException | SQLException e) {
@@ -49,10 +49,52 @@ public class TestDAO implements ConnectionDAO{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
 			return testlist;
 		}
 		
+		/*
+		 * Adding new Test
+		 */
 		
+		public int addTest(TestDTO testdto){
+				try {
+					con = ConnectionDAO.getConnection();
+					String sql = "insert into test(courseId, testName, testDuration, minMarks, totalMarks) values(?,?,?,?,?)";
+					ps = con.prepareStatement(sql);
+					ps.setInt(1, testdto.getCourseId());
+					ps.setString(2, testdto.getTestName());
+					ps.setInt(3, testdto.getTestDuration());
+					ps.setInt(4, testdto.getMinMarks());
+					ps.setInt(5, testdto.getTotalMarks());
+					noofrows = ps.executeUpdate();
+					return noofrows;
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return noofrows;
+		}
+		
+		/*
+		 * getting test id of a specific record
+		 */
+		public int fetchTestId(String testName){
+			try {
+				con = ConnectionDAO.getConnection();
+				String sql = "select testId from test where testName = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, testName);
+				rs = ps.executeQuery();
+				while(rs.next()){
+					int testId = rs.getInt(1);
+					System.out.println("Test Id from db is "+testId);
+					return testId;
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return 0;
+		}
 }
