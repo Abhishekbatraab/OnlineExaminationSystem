@@ -35,9 +35,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
+    <link href="css/fontawesome-all.css" rel="stylesheet">
     <title>Dashboard</title>
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -59,6 +58,10 @@
                 //If DIV is visible it will be hidden and vice versa.
                 $scope.AddTestDiv = true;
                 $scope.testdatadiv = false;            
+            }
+            $scope.goBack = function(){
+            	$scope.testdatadiv = true;
+            	$scope.AddTestDiv = false;
             }
        });
     </script>
@@ -154,7 +157,7 @@
 							<td>
 								<table>
 									<tr>
-										<td class="editbtn"><a>Edit</a></td>
+										<td class="addquesbtn"><a href="questions.jsp?testName=${testList.testName}">Add Questions </a></td> 
 										<td class="deletebtn"><a>Delete</a></td>
 									</tr>
 								</table>
@@ -163,9 +166,9 @@
 					</c:forEach>
 	             </tbody>
 	            </table>
-	            <button class="orange" ng-click="showTestDiv()">New Test +</button>
+	            <button class="orange" ng-click="showTestDiv()">New Test <i class="fas fa-plus"></i></button>
 	       		</div>          
-        </div>
+        </div><!-- Test data close div -->
         	  
 	      	  <div ng-show="AddTestDiv">
 	      	  	
@@ -211,16 +214,15 @@
 					    </div>
 						<div class="form-group">
 						   <div class="col-sm-offset-2 col-sm-10">
-							      <button type="submit" class="btn btn-default">Add Test</button>
+							      <button type="submit" class="btn btn-default orange">Add Test <i class="fas fa-plus before"></i></button>
 						   </div>
 					    </div>
-			</div>
-					  
-			</form>
-			<button class="btn btn-default orange" ng-click="ShowQuesDiv()" ng-show="addquesbtn">Start adding Questions +</button>
+				</form>
+				<button class="btn btn-primary" ng-click="goBack()"><i class="far fa-hand-point-left before"></i><span>Back to Test</span> </button>
+			</div><!-- Add test close div  -->
 			
-							
-		</div>
+		</div><!-- Main Div end -->
+		
 		
       </div>
     </div>

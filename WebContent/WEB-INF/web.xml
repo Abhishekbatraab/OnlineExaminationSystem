@@ -59,7 +59,16 @@
   <servlet-mapping>
   	<servlet-name>AddTestController</servlet-name>
   	<url-mapping>/AddTest</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>AddQuestionsController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.AddQuestionsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddQuestionsController</servlet-name>
+  	<url-mapping>/AddQuestions</url-mapping>
   </servlet-mapping>    
+      
   <error-page>
     <exception-type>java.sql.SQLException</exception-type>
     <location>/error.html</location>

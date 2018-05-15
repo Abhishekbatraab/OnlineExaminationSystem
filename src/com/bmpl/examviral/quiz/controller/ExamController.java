@@ -1,7 +1,7 @@
 package com.bmpl.examviral.quiz.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bmpl.examviral.quiz.model.dao.QuestionDAO;
+/*import com.bmpl.examviral.quiz.model.dao.QuestionDAO;
 import com.bmpl.examviral.quiz.model.dto.QuestionDTO;
-import com.bmpl.examviral.quiz.model.dto.UserDTO;
+*/import com.bmpl.examviral.quiz.model.dto.UserDTO;
 
 /**
  * Servlet implementation class ExamController
@@ -33,15 +33,15 @@ public class ExamController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	// TODO Auto-generated method stub
     	/*doGet(req,resp);*/
-    	String testName = req.getParameter("test");
+    	//String testName = req.getParameter("test");
     	String emailId = req.getParameter("emailId");
     	String username = req.getParameter("username");
-    	QuestionDAO quesdao = new QuestionDAO();
+    	//QuestionDAO quesdao = new QuestionDAO();
     	UserDTO userdto = new UserDTO();
     	userdto.setEmail(emailId);
     	userdto.setUsername(username);
-    	ArrayList<QuestionDTO> quizQuesList = quesdao.getTestData(testName);
-    	req.setAttribute("quizQuesList", quizQuesList);
+    	//ArrayList<QuestionDTO> quizQuesList = quesdao.getTestData(testName);
+    	//req.setAttribute("quizQuesList", quizQuesList);
     	req.setAttribute("userdetails", userdto);    	
     	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/exam.jsp");
     	dispatcher.forward(req, resp);    	

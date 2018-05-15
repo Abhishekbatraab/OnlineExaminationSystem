@@ -40,17 +40,15 @@ public class AddTestController extends HttpServlet {
     	testdto.setTestDuration(testDuration);
     	testdto.setMinMarks(minMarks);
     	testdto.setTotalMarks(maxMarks);
-    	int noOfCourseAdded = testdao.addTest(testdto);
+    	int noOfTestAdded = testdao.addTest(testdto);
     	int testId = testdao.fetchTestId(testdto.getTestName());
-    	System.out.println("No of test Added : "+noOfCourseAdded);
-    	if(noOfCourseAdded>0){
+    	System.out.println("No of test Added : "+noOfTestAdded);
+    	if(noOfTestAdded>0){
     		response.sendRedirect("test.jsp?testId="+testId+"&success=new");
     	}
     	else{
     		System.out.println("No test add");
     	}
-    	
-    	
     }
 
 }

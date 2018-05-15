@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+
 
 @media (min-width: 768px)
 
@@ -6,23 +6,23 @@
 	width: auto;
 }
 
-.after{
-	margin-left: 700px;
-}
-
 .orange{
 	background-color: #FB3618;
 	color: white;
+}
+
+.after{
+	margin-left: 500px;
 }
 
 .before{
 	padding-right: 10px;
 }
 
-.addquesbtn{
+.editquesbtn{
 	cursor: pointer;
 	padding-right: 10px;
-	border-right: 1px solid black;
+	
 }
 
 .deletebtn{

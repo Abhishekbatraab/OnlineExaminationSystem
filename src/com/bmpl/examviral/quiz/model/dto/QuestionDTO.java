@@ -4,8 +4,14 @@ public class QuestionDTO {
 	
 	private int quesNo;
 	private String question;
-	private String optionA, optionB, optionC, optionD;
+	private String optionA, optionB, optionC, optionD, correctAnswer;
 	
+	public String getCorrectAnswer() {
+		return correctAnswer;
+	}
+	public void setCorrectAnswer(String correctAnswer) {
+		this.correctAnswer = correctAnswer;
+	}
 	public String getOptionA() {
 		return optionA;
 	}
@@ -30,7 +36,6 @@ public class QuestionDTO {
 	public void setOptionD(String optionD) {
 		this.optionD = optionD;
 	}
-	private char ans;
 	
 	public int getQuesNo() {
 		return quesNo;
@@ -43,16 +48,5 @@ public class QuestionDTO {
 	}
 	public void setQuestion(String question) {
 		this.question = question;
-	}
-	
-	public char getAns() {
-		return ans;
-	}
-	public void setAns(char ans) {
-		this.ans = ans;
-	}
-	
-	
-	
-	
+	}	
 }
