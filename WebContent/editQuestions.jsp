@@ -7,32 +7,24 @@
 <%@ page import="java.util.ArrayList"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
+	/* 
+	request.setAttribute("testName", testName);
+	
+	int quesNumber = Integer.parseInt(request.getParameter("quesNo"));//updated question question number */
+	/* request.setAttribute("quesno", quesNumber);
+	request.setAttribute("quesNo", quesNo); */
+	/* String message = request.getParameter("message"); */
+	/* request.setAttribute("message", message); */
+	
 	QuestionDAO quesdao = new QuestionDAO();
-	/* String testName = request.getParameter("testName");
-	String testname = request.getParameter("testname"); */
-	
-	/* String newmessage = (String)request.getAttribute("message");
-	request.setAttribute("newmessage", newmessage); */
-
-	
-	
-	/* request.setAttribute("testName", testName);
-	request.setAttribute("testname", testname); */
-	//testname = request.getParameter("testname"); //testname getting from controller 
-	
-	ArrayList<QuestionDTO> questionlist = quesdao.getQuestions();
-	System.out.println("No of questions is "+questionlist.size());
-	/* String  newMsg = (String)request.getAttribute("message");
-	request.setAttribute("newMsg", newMsg); */
-	if(questionlist.size()==0){
-		System.out.println("No Record Found");
-		String message = "No record Found";
-		request.setAttribute("message", message);
-	}
-	else{
-		request.setAttribute("queslist", questionlist);
-		/* request.setAttribute("coursenamelist", courseNameList); */
-	}
+	QuestionDTO quesdto = new QuestionDTO();
+	int quesNo = Integer.parseInt(request.getParameter("quesNo"));
+	quesdto.setQuesNo(quesNo);
+	QuestionDTO quesRecord = quesdao.getSpecificQuestion(quesdto);
+	System.out.println("Question Record is "+quesRecord.toString());
+	request.setAttribute("quesrecord", quesRecord);
+	quesdto = (QuestionDTO)request.getAttribute("quesrecord");
+	System.out.println("Question from question record is"+quesdto.getQuestion());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +44,7 @@
     <!-- Custom styles for this template -->
     <link href="css/questions.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/editques.css" rel="stylesheet">
     <!-- <link href="css/adminpage.css" rel="stylesheet"></link> -->
     
     <!-- Angular JS -->
@@ -124,52 +117,59 @@
 	            <li><a href="">Another nav item</a></li>
 	          </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	          <h1 class="page-header">Manage Questions <span class="after">Total Questions: <span><%= questionlist.size() %></span></span></h1>
-	          <h2><c:out value="${param.message}"></c:out></h2>
-	          <div>
-	       		<h1 ng-model="viewHeading">View Questions</h1>
-	       		<div class="table-responsive">
-	            <table id="example" class="table table-striped table-bordered" style="width:100%">
-	              <thead>
-	                <tr>
-	                  <th>Question No.</th>
-	                  <th>Question</th>
-	                  <th>Option A</th>
-	                  <th>Option B</th>
-	                  <th>Option C</th>	              
-	                  <th>Option D</th>
-	                  <th>Correct Answer</th>
-	                  <th>Actions</th>
-	                </tr>
-	              </thead>
-	              <tbody> 	
-	              	
-	                <c:forEach var="questionList" items="${requestScope.queslist}">
-	                	 
-	                	<tr>
-							<td><c:out value="${questionList.quesNo}"/></td>
-							<td><c:out value="${questionList.question}"/></td>
-							<td><c:out value="${questionList.optionA}"/></td>
-							<td><c:out value="${questionList.optionB}"></c:out>
-							<td><c:out value="${questionList.optionC}"/></td>
-							<td><c:out value="${questionList.optionD}"/></td>
-							<td><c:out value="${questionList.correctAnswer}"/></td>
-							<td>
-								<table>
-									<tr>
-										<td class="editquesbtn"><a href="editQuestions.jsp?quesNo=<c:out value="${questionList.quesNo}"/>&testName=<c:out value="${questionList.testName}"></c:out>">Edit </a> <i class="fas fa-edit"></i></td> 
-										<td class="deletebtn"><a href="DeleteQuestion?quesNo=<c:out value="${questionList.quesNo}"/>">Delete</a></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</c:forEach>
-	             </tbody>
-	            </table>
-	       		</div>          
-        </div><!-- Question data close div -->
-        	  		
+       <h1>Update Questions</h1>
+       <h2><c:out value="${param.message}"></c:out> </h2>
+	   <div class="updateques">
+	    <form class="form-horizontal" action="EditQuestion?testName=<c:out value="${param.testName}"></c:out>&quesNo=<c:out value="${param.quesNo}"></c:out>" method="post">
+		  <div class="form-group">
+		     <label for="" class="col-sm-2 control-label">Test Name</label>
+			 <div class="col-sm-10">
+			      	<label><c:out value="${param.testName}"></c:out></label>
+			 </div>
+		  </div>
+		  <div class="form-group">
+			  <label for="question" class="col-sm-2 control-label">Question</label>
+			  <div class="col-sm-10">
+			      <textarea id="question" rows="4" cols="20" name="quesName"><c:out value='${quesrecord.getQuestion()}'/></textarea>
+			  </div>
+		  </div>			  
+		 <div class="form-group">
+		    <label for="optionA" class="col-sm-2 control-label">Option A</label>
+			<input type="radio" name="options" value="optionA">
+			<div class="col-sm-10">
+			      <textarea id="optionA" rows="4" cols="20" name="optionA"><c:out value='${quesrecord.getOptionA()}'/></textarea>
+			</div>
+	     </div>
+		 <div class="form-group">
+			<label for="optionB" class="col-sm-2 control-label">Option B</label>
+			<input type="radio" name="options" value="optionB">
+			<div class="col-sm-10">
+		      <textarea id="optionB" rows="4" cols="20" name="optionB"><c:out value='${quesrecord.getOptionB()}'/></textarea>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<label for="optionC" class="col-sm-2 control-label">Option C</label>
+		  	<input type="radio" name="options" value="optionC">
+			<div class="col-sm-10">
+		       <textarea id="optionC" rows="4" cols="20" name="optionC"><c:out value='${quesrecord.getOptionC()}'/></textarea>
+			</div>
+	    </div>
+		<div class="form-group">
+		   	<label for="optionD" class="col-sm-2 control-label">Option D</label>
+		   	<input type="radio" name="options" value="optionD">
+			<div class="col-sm-10">
+		       <textarea id="optionD" rows="4" cols="20" name="optionD"><c:out value='${quesrecord.getOptionD()}'/></textarea>
+		  	</div>
+		 </div>
+		<div class="form-group">
+		   <div class="col-sm-offset-2 col-sm-10">
+			  <button type="submit" class="btn btn-default orange">Update Question <i class="fas fa-pencil-alt"></i></button>
+		   </div>
+		</div>
+	</form>
+	 <!-- <button class="btn btn-primary" ng-click="goBack()"><i class="far fa-hand-point-left before"></i><span>Back to Questions</span> </button> -->
+  </div><!-- Update Question close div  -->
+			
 		</div><!-- Main Div end -->
 		
 		

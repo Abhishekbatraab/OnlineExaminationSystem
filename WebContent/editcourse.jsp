@@ -86,7 +86,7 @@
             <li><a href="#">Students</a></li>
             <li><a href="courses.jsp">Courses</a></li>
             <li><a href="#">Questions</a></li>
-            <li><a href="#">Test</a></li>
+            <li><a href="test.jsp">Test</a></li>
             <li><a href="#">Results</a></li>                     
           </ul>
           <ul class="nav nav-sidebar">
@@ -111,6 +111,7 @@
 		System.out.println("Course id from url is "+courseId);
 		CourseDTO courserecord = coursedao.getSpecificRecord(courseId);
 		request.setAttribute("courserecord", courserecord);
+		
 		System.out.println("Course record in jsp file"+courserecord);
 	%>
 	<form action="EditCourse?courseId=${courserecord.getcourseId()}" method="post" enctype="multipart/form-data" class="form-signin formcontent" >

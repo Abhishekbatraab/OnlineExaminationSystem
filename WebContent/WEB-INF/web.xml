@@ -67,6 +67,22 @@
   <servlet-mapping>
   	<servlet-name>AddQuestionsController</servlet-name>
   	<url-mapping>/AddQuestions</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>EditQuestionController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.EditQuestionController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditQuestionController</servlet-name>
+  	<url-mapping>/EditQuestion</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>DeleteQuestionController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.DeleteQuestionController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteQuestionController</servlet-name>
+  	<url-mapping>/DeleteQuestion</url-mapping>
   </servlet-mapping>    
       
   <error-page>

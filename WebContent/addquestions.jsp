@@ -2,28 +2,36 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.bmpl.examviral.quiz.model.dto.TestDTO" %>
 <%@ page import="com.bmpl.examviral.quiz.model.dao.TestDAO" %>
-<%@ page import="com.bmpl.examviral.quiz.model.dto.CourseDTO" %>
-<%@ page import="com.bmpl.examviral.quiz.model.dao.CourseDAO" %>
+<%@ page import="com.bmpl.examviral.quiz.model.dto.QuestionDTO" %>
+<%@ page import="com.bmpl.examviral.quiz.model.dao.QuestionDAO" %>
 <%@ page import="java.util.ArrayList"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	TestDAO testdao = new TestDAO();
-	TestDTO testdto = new TestDTO();
-	CourseDAO coursedao = new CourseDAO();
-	ArrayList<CourseDTO> courseNameList = coursedao.getCourseNameList();
-	request.setAttribute("coursenameList", courseNameList);
-	System.out.println("Course Name List in jsp is "+courseNameList);
-	ArrayList<TestDTO> testlist = testdao.readTestData();
-	if(testlist.size()==0){
+	QuestionDAO quesdao = new QuestionDAO();
+	String testName = request.getParameter("testName");
+	request.setAttribute("testName", testName);
+	/* String testname = request.getParameter("testname"); */
+	
+	/* String newmessage = (String)request.getAttribute("message");
+	request.setAttribute("newmessage", newmessage); */
+
+	
+	
+	
+	/* request.setAttribute("testname", testname); */
+	//testname = request.getParameter("testname"); //testname getting from controller 
+	
+	/* ArrayList<QuestionDTO> questionlist = quesdao.getQuestions(); */
+	/* System.out.println("No of questions is "+questionlist.size()); */
+	/* if(questionlist.size()==0){
 		System.out.println("No Record Found");
 		String message = "No record Found";
 		request.setAttribute("message", message);
 	}
 	else{
-		request.setAttribute("testlist", testlist);
-		/* request.setAttribute("coursenamelist", courseNameList); */
-	}
-	
+		request.setAttribute("queslist", questionlist);
+		/* request.setAttribute("coursenamelist", courseNameList); 
+	}*/
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +44,14 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <link href="css/fontawesome-all.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>Questions Dashboard</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/test.css" rel="stylesheet">
+    <link href="css/questions.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/adminpage.css" rel="stylesheet"></link>
+    <!-- <link href="css/adminpage.css" rel="stylesheet"></link> -->
     
     <!-- Angular JS -->
     <script src="js/angular.min.js"></script>
@@ -52,17 +60,7 @@
     	const app = angular.module("myapp", []);
         app.controller('mycontroller', function ($scope) {
             //This will hide the DIV by default.
-            $scope.testdatadiv = true;
-            $scope.AddTestDiv = false;
-            $scope.showTestDiv = function () {
-                //If DIV is visible it will be hidden and vice versa.
-                $scope.AddTestDiv = true;
-                $scope.testdatadiv = false;            
-            }
-            $scope.goBack = function(){
-            	$scope.testdatadiv = true;
-            	$scope.AddTestDiv = false;
-            }
+            
        });
     </script>
     
@@ -126,100 +124,68 @@
 	          </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	          <h1 class="page-header">Manage Tests <span class="after">Total Tests: <span><%= testlist.size() %></span></span></h1>
-	          <div ng-show="testdatadiv">
-	       		<h1 ng-model="viewHeading">View Tests</h1>
-	       		<div class="table-responsive">
-	            <table id="example" class="table table-striped table-bordered" style="width:100%">
-	              <thead>
-	                <tr>
-	                  <th>Test Id</th>
-	                  <th>courseId</th>
-	                  <th>Test Name</th>
-	                  <th>Test Timing</th>
-	                  <th>Minimum Marks</th>	              
-	                  <th>Total Marks</th>
-	                  <th>Action</th>
-	                </tr>
-	              </thead>
-	              <tbody> 
-	              <tr><c:out value="${requestScope.message}"></c:out></tr>  	
-	              	
-	                <c:forEach var="testList" items="${requestScope.testlist}">
-	                	 
-	                	<tr>
-							<td><c:out value="${testList.testId }"/></td>
-							<td><c:out value="${testList.courseId}"/></td>
-							<td><c:out value="${testList.testName}"/></td>
-							<td><c:out value="${testList.testDuration}"></c:out>
-							<td><c:out value="${testList.minMarks}"/></td>
-							<td><c:out value="${testList.totalMarks}"/></td>
-							<td>
-								<table>
-									<tr>
-										<td class="addquesbtn"><a href="addquestions.jsp?testName=${testList.testName}">Add Questions </a></td> 
-										<td class="deletebtn"><a>Delete</a></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</c:forEach>
-	             </tbody>
-	            </table>
-	            <button class="orange" ng-click="showTestDiv()">New Test <i class="fas fa-plus"></i></button>
-	       		</div>          
-        </div><!-- Test data close div -->
-        	  
-	      	  <div ng-show="AddTestDiv">
-	      	  	
-			  	<form class="form-horizontal" action="AddTest" method="post">
+	          <h1 class="page-header">Add Questions</h1>
+	          <h1><c:out value="${param.message}"></c:out></h1>
+	          <%-- <h1><c:out value="${requestScope.quesNumber}"></c:out>&nbsp<c:out value="${requestScope.newmessage }"></c:out></h1> --%>
+	          
+       		<div >
+	      	 	<form class="form-horizontal" action="AddQuestions?testName=<c:out value="${requestScope.testName}"></c:out>" method="post">
 					  <div class="form-group">
-					    <label for="courseidname" class="col-sm-2 control-label">Course Id and Course Name</label>
+					    <label for="" class="col-sm-2 control-label">Test Name</label>
 					    <div class="col-sm-10">
-					      <select class="form-control" name="courseNameDropDown" id="courseidname">
-									<option>Select Course</option>
-									<c:forEach var="coursenamelist" items="${requestScope.coursenameList}">
-										<option value="${coursenamelist.courseId}">
-											<c:out value="${coursenamelist.courseId}"></c:out> |
-											<c:out value="${coursenamelist.title}"></c:out>
-										</option>
-									</c:forEach>	
-						  </select>
+					      	<label><c:out value="${requestScope.testName}"></c:out></label>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label for="testname" class="col-sm-2 control-label">Test Name</label>
+					    <label for="question" class="col-sm-2 control-label">Question</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="testname" name="testName" placeholder="Same as course Name">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <label for="testtime" class="col-sm-2 control-label">Test Duration (Minutes)</label>
-					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="testtime" name="testDuration" placeholder="Enter test duration">
+					      <textarea id="question" rows="4" cols="20" name="quesName"></textarea>
 					    </div>
 					  </div>
 					  
 						<div class="form-group">
-						   <label for="minmarks" class="col-sm-2 control-label">Minimum Marks</label>
+						   <label for="optionA" class="col-sm-2 control-label">Option A</label>
+						   <input type="radio" name="options" value="optionA">
 						   <div class="col-sm-10">
-						      <input type="text" class="form-control" id="minmarks" name="minMarks" placeholder="Enter Minimum Marks">
+						      <textarea id="optionA" rows="4" cols="20" name="optionA"></textarea>
 						   </div>
 						</div>
 						<div class="form-group">
-							<label for="maxmarks" class="col-sm-2 control-label">Maximum Marks</label>
+							<label for="optionB" class="col-sm-2 control-label">Option B</label>
+							<input type="radio" name="options" value="optionB">
 							<div class="col-sm-10">
-						      <input type="text" class="form-control" id="maxmarks" name="maxMarks" placeholder="Enter Maximum Marks">
-						    </div>
+						      <textarea id="optionB" rows="4" cols="20" name="optionB"></textarea>
+						   </div>
 					    </div>
+					    <div class="form-group">
+					    	<label for="optionC" class="col-sm-2 control-label">Option C</label>
+					    	<input type="radio" name="options" value="optionC">
+							<div class="col-sm-10">
+						      <textarea id="optionC" rows="4" cols="20" name="optionC"></textarea>
+							</div>
+					    </div>
+					    <div class="form-group">
+					    	<label for="optionD" class="col-sm-2 control-label">Option D</label>
+					    	<input type="radio" name="options" value="optionD">
+							<div class="col-sm-10">
+						      <textarea id="optionD" rows="4" cols="20" name="optionD"></textarea>
+						   	</div>
+					    </div>
+					 	<!-- <div class="form-group">
+					    	<label for="" class="col-sm-2 control-label">Correct Answer</label>
+						    <div class="col-sm-10">
+						      	<label></label>
+						    </div>
+					    </div> -->							
 						<div class="form-group">
 						   <div class="col-sm-offset-2 col-sm-10">
-							      <button type="submit" class="btn btn-default orange">Add Test <i class="fas fa-plus before"></i></button>
+							      <button type="submit" class="btn btn-default orange">Add Question <i class="fas fa-plus before"></i></button>
 						   </div>
 					    </div>
 				</form>
-				<button class="btn btn-primary" ng-click="goBack()"><i class="far fa-hand-point-left before"></i><span>Back to Test</span> </button>
-			</div><!-- Add test close div  -->
+				<!-- <button class="btn btn-primary" ng-click="goBack()"><i class="far fa-hand-point-left before"></i><span>Back to Questions</span> </button> -->
+			</div><!-- Add Question close div  -->
+	      	  
 			
 		</div><!-- Main Div end -->
 		
@@ -228,7 +194,6 @@
     </div>
 	
     <!-- Bootstrap core JavaScript
-    ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

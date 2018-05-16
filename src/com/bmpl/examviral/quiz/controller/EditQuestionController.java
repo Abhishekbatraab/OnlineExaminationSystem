@@ -12,49 +12,50 @@ import com.bmpl.examviral.quiz.model.dao.QuestionDAO;
 import com.bmpl.examviral.quiz.model.dto.QuestionDTO;
 
 /**
- * Servlet implementation class AddQuestionsController
+ * Servlet implementation class EditQuestionController
  */
-@WebServlet("/AddQuestions")
-public class AddQuestionsController extends HttpServlet {
+@WebServlet("/EditQuestion")
+public class EditQuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	QuestionDAO quesdao = new QuestionDAO();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddQuestionsController() {
+    public EditQuestionController() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String testname = request.getParameter("testName");
-		String quesName = request.getParameter("quesName");
+		int quesNo = Integer.parseInt(request.getParameter("quesNo"));
+		String testName= request.getParameter("testName");
+		String question = request.getParameter("quesName");
 		String optionA = request.getParameter("optionA");
 		String optionB = request.getParameter("optionB");
 		String optionC = request.getParameter("optionC");
 		String optionD = request.getParameter("optionD");
 		String correctAnswer = request.getParameter("options");
 		QuestionDTO quesdto = new QuestionDTO();
-		quesdto.setQuestion(quesName);
+		quesdto.setTestName(testName);
+		quesdto.setQuesNo(quesNo);
+		quesdto.setQuestion(question);
 		quesdto.setOptionA(optionA);
 		quesdto.setOptionB(optionB);
 		quesdto.setOptionC(optionC);
 		quesdto.setOptionD(optionD);
 		quesdto.setCorrectAnswer(correctAnswer);
-		QuestionDAO quesdao = new QuestionDAO();
-		int noofrows = quesdao.addQuestions(quesdto, testname);
-		if(noofrows>0){
-			response.sendRedirect("addquestions.jsp?message="+noofrows+" Question(s) added&testName="+testname);
-		}else{
-			response.sendRedirect("addquestions.jsp?message=No questions added&testname="+testname);
+		int result = quesdao.updateSpecificQuestion(quesdto);
+		if(result>0){
+			response.sendRedirect("editQuestions.jsp?quesNo="+quesdto.getQuesNo()+"&message= Question no."+quesdto.getQuesNo()+" Successfully edited&testName="+quesdto.getTestName());
 		}
-		
+		else{
+			response.sendRedirect("editQuestions.jsp?quesNo="+quesdto.getQuesNo()+"&message= No Questions edited");
+		}
 	}
 
 }

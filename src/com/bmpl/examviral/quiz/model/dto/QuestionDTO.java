@@ -4,8 +4,14 @@ public class QuestionDTO {
 	
 	private int quesNo;
 	private String question;
-	private String optionA, optionB, optionC, optionD, correctAnswer;
+	private String optionA, optionB, optionC, optionD, correctAnswer, testName;
 	
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
 	public String getCorrectAnswer() {
 		return correctAnswer;
 	}
