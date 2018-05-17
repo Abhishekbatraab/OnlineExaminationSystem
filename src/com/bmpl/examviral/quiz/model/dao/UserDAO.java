@@ -20,7 +20,9 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 
 	Connection con;
 	Statement stmnt;
+	PreparedStatement ps;
 	ResultSet rs;
+	UserDTO userdto = new UserDTO();
 	
 	ArrayList<UserDTO> userList = new ArrayList<UserDTO>();
 //	UserDTO userDto = new UserDTO(id, username, email, password, gender, dateofbirth, address, institutename);
@@ -87,8 +89,6 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 	public ArrayList<UserDTO> readAllRecords() throws ClassNotFoundException, SQLException{
 		con = ConnectionDAO.getConnection();
 		stmnt = con.createStatement();
-
-		
 		String sql = "select * from users where rolename = 'student' ";
 		rs = stmnt.executeQuery(sql);
 		while(rs.next()){
@@ -179,6 +179,32 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 		ps.executeUpdate();
 	}
 
-
+	public UserDTO getSpecificRecord(String email){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "select * from users where email = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				UserDTO userdto = new UserDTO();
+				userdto.setId(rs.getInt(1));
+				userdto.setUsername(rs.getString(2));
+				userdto.setPassword(rs.getString(3));
+				userdto.setEmail(rs.getString(4));
+				userdto.setDateofbirth(rs.getString(5));
+				userdto.setGender(rs.getString(6));
+				userdto.setAddress(rs.getString(7));
+				userdto.setInstitutename(rs.getString(8));
+				userdto.setRegisterdate(rs.getString(10));
+				System.out.println("Specific record of user is "+userdto);
+				return userdto;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userdto;
+	}
 	
 }

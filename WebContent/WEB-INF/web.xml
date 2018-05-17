@@ -83,6 +83,14 @@
   <servlet-mapping>
   	<servlet-name>DeleteQuestionController</servlet-name>
   	<url-mapping>/DeleteQuestion</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>DeleteTestController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.testcontrollers.DeleteTestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteTestController</servlet-name>
+  	<url-mapping>/DeleteTest</url-mapping>
   </servlet-mapping>    
       
   <error-page>

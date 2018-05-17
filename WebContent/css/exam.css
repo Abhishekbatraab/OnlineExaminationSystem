@@ -38,8 +38,41 @@ body{
 
 /*>>>>>>> User Profile Design <<<<<<<<<<*/
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 65px auto;
+    text-align: center;
+}
 
-.row>.col-lg-4{
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+/* .row>.col-lg-4{
     border: 1px solid black;
     height: 500px;
     background: linear-gradient(grey, silver);
@@ -62,7 +95,7 @@ body{
     color: white;
     word-wrap: break-word;
 }
-
+ */
 /*>>>>>>>>>> Center Section Design <<<<<<<<<<<<<<<<*/
 
 
@@ -107,7 +140,7 @@ body{
 /*>>>>>>>>>Question Displaying Div<<<<<<<<<<*/
 
 .quespage{
-    display: none;
+    /* display: none; */
     border: 1px solid black;
     height: auto;
     border: 1px solid black;
@@ -135,19 +168,4 @@ body{
     padding-bottom: 20px;
 }*/
 
-.optionList2, .optionList3, .optionList4, .optionList4, .optionList5{
-    display: none;
-}
-
-.quesSecondSpan, .quesThirdSpan, .quesFourthSpan, .quesFifthSpan{
-    display: none;
-}
-
-.secondQuesSpan, .thirdQuesSpan, .fourthQuesSpan ,.fifthQuesSpan{
-    display: none;
-}
-
-.pagination{
-    margin-top: -4px;
-}
 

@@ -82,7 +82,7 @@
             <li><a href="#">Profile</a></li>
             <li><a href="#">Students</a></li>
             <li><a href="courses.jsp">Courses</a></li>
-            <li><a href="#">Questions</a></li>
+            <li><a href="questions.jsp">Questions</a></li>
             <li><a href="test.jsp">Test</a></li>
             <li><a href="#">Results</a></li>                     
           </ul>
@@ -190,96 +190,6 @@
                 </tbody>
             </table>
           </div>
-          <%-- <h2 class="sub-header">List of Courses</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Username</th>
-                  <th>Password</th>
-                  <th>Email</th>
-                  <th>Date of birth</th>
-                  <th>Gender</th>
-                  <th>Address</th>
-                  <th>Institute Name</th>
-                  <th>Registration Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <c:forEach var="courselist" items="${sessionScope.courselist}">
-	                	<tr>
-							<td><c:out value="${courselist.subId}"/></td>
-							<td><img src="<c:out value="${courselist.imagePath}"/></img>"></td>
-							<td><c:out value="${courselist.title}"/></td>
-							<td><c:out value="${courselist.details}"/></td>
-							<td><c:out value="${courselist.register_date}"/></td>
-						</tr>
-					</c:forEach>
-                </tbody>
-            </table>
-          </div> --%>
-          
-        </div>
-      </div>
-    </div><!--Container-fluid division end -->
-    <!-- <div class="row courseDiv">
-    	<div class="col-lg-6 partition1">   	        
-    	    <div class="courseDetails">
-    	        <label for="courseName">Course:</label>
-    	        Split button
-                <div class="btn-group">
-                  <button type="button" class="btn btn-info">Add Course to list</button>
-                  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <form method="post">	
-                  <select class="dropdown-menu" name="courseName" multiple required>
-                    <option value="0" selected>Select Course</option>
-    	            <option value="1">C</option>
-    	            <option value="2">C++</option>
-    	            <option value="3">C#</option>
-    	            <option value="4">HTML5</option>
-    	            <option value="5">JAVA</option>
-    	            <option value="6">JavaScript</option>
-    	            <option value="7">Kotlin</option>
-    	            <option value="8">php</option>
-    	            <option value="9">css3</option>
-    	            <option value="10">Asp.net</option>
-                  </select>
-              	  <input type="submit" value="Add subjects">               
-                </form>
-                
-                </div>
-                <div>
-                <form action="FileUploadHandler" method="post" enctype="multipart/form-data">
-                	<label>Browse File: </label>
-                	<input name="file" type="file" />
-                	<input value="upload" type="submit">
-                </form>
-                </div>
-                <table border="1">
-                    <thead>
-                       <tr>
-                            <th>Id</th>
-                            <th>Title</th>
-                            <th>Details</th>
-                            <th>Register Date</th>
-                       </tr>                 
-                    </thead>
-                    <tbody>
-                        <tr><td></td></tr>
-                        <tr><td></td></tr>
-                        <tr><td></td></tr>
-                        <tr><td></td></tr>	
-                    </tbody>
-                </table>
-    	    </div>
-    	</div>
-    	<div class="col-lg-6 partition2">
-    	
-    	</div> -->
 	</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

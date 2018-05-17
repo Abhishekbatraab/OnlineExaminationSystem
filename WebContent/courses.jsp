@@ -1,4 +1,3 @@
-<%@page import="com.bmpl.examviral.quiz.model.dao.CourseDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -123,6 +122,7 @@
             <li class="active"><a href="courses.jsp">Course Details</a></li>
             <li><a href="javascript:void(0);" ng-click="ShowHideView()">View Courses</a></li>
             <li><a href="javascript:void(0);" ng-click="ShowHide()">Add Courses</a></li>
+            <li><a href="test.jsp">Tests</a></li>
           	<li><a href="#">Questions</a></li>
             <li><a href="#">User Accounts</a></li>
           </ul>

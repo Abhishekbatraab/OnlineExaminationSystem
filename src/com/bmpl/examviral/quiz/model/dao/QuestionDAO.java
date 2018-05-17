@@ -41,6 +41,7 @@ public class QuestionDAO{
 			}
 		return quizQuesList;
 	}*/
+	
 	/*
 	 * Fetching All questions
 	 */
@@ -70,6 +71,35 @@ public class QuestionDAO{
 		return quizQuesList;
 	}
 	
+	/*
+	 * Fetching questions of a particular test name
+	 */
+	public ArrayList<QuestionDTO> getQuestions(String testName){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "select * from questions where testName = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, testName);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				QuestionDTO quesdto = new QuestionDTO();
+				quesdto.setQuesNo(rs.getInt(1));
+				quesdto.setQuestion(rs.getString(2));
+				quesdto.setTestName(rs.getString(3));
+				quesdto.setOptionA(rs.getString(4));
+				quesdto.setOptionB(rs.getString(5));
+				quesdto.setOptionC(rs.getString(6));
+				quesdto.setOptionD(rs.getString(7));
+				quesdto.setCorrectAnswer(rs.getString(8));
+				quizQuesList.add(quesdto);
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return quizQuesList;
+	}
 	public int addQuestions(QuestionDTO quesdto, String testname){
 		try {
 			con = ConnectionDAO.getConnection();
@@ -111,7 +141,7 @@ public class QuestionDAO{
 				quesdto.setOptionD(rs.getString(7));
 				quesdto.setCorrectAnswer(rs.getString(8));
 				return quesdto;
-			}
+			}	
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,6 +182,23 @@ public class QuestionDAO{
 			String sql = "delete from questions where questionNo = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, quesNo);
+			int result = ps.executeUpdate();
+			return result;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+public int deleteSpecificQuestion(String testName){
+		
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "delete from questions where testName = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, testName);
 			int result = ps.executeUpdate();
 			return result;
 		} catch (ClassNotFoundException | SQLException e) {

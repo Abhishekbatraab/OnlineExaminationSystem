@@ -17,6 +17,8 @@ import com.bmpl.examviral.quiz.model.dto.QuestionDTO;
 @WebServlet("/AddQuestions")
 public class AddQuestionsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	static int instancecounter = 0;
+	private int counter=0;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,7 +52,10 @@ public class AddQuestionsController extends HttpServlet {
 		QuestionDAO quesdao = new QuestionDAO();
 		int noofrows = quesdao.addQuestions(quesdto, testname);
 		if(noofrows>0){
-			response.sendRedirect("addquestions.jsp?message="+noofrows+" Question(s) added&testName="+testname);
+			instancecounter++;
+			counter=instancecounter;
+			System.out.println("Value of counter is "+counter);
+			response.sendRedirect("addquestions.jsp?message="+counter+" Question(s) added&testName="+testname);
 		}else{
 			response.sendRedirect("addquestions.jsp?message=No questions added&testname="+testname);
 		}

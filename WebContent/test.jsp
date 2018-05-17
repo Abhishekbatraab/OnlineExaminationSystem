@@ -36,7 +36,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <link href="css/fontawesome-all.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>Tests</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -127,6 +127,7 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 	          <h1 class="page-header">Manage Tests <span class="after">Total Tests: <span><%= testlist.size() %></span></span></h1>
+	          <h2><c:out value="${param.message}"></c:out></h2>
 	          <div ng-show="testdatadiv">
 	       		<h1 ng-model="viewHeading">View Tests</h1>
 	       		<div class="table-responsive">
@@ -158,7 +159,7 @@
 								<table>
 									<tr>
 										<td class="addquesbtn"><a href="addquestions.jsp?testName=${testList.testName}">Add Questions </a></td> 
-										<td class="deletebtn"><a>Delete</a></td>
+										<td class="deletebtn"><a href="DeleteTest?testName=${testList.testName}">Delete</a></td>
 									</tr>
 								</table>
 							</td>

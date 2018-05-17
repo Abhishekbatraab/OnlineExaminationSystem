@@ -13,6 +13,7 @@ public class TestDAO implements ConnectionDAO{
 		private PreparedStatement ps = null;
 		private ResultSet rs = null;
 		int noofrows = 0;
+		int result = 0;
 		TestDTO testdto = new TestDTO();
 		ArrayList<TestDTO> testlist = new ArrayList<>();
 		
@@ -96,5 +97,20 @@ public class TestDAO implements ConnectionDAO{
 				e.printStackTrace();
 			}
 			return 0;
+		}
+		
+		public int deleteTest(String testName){
+			try {
+				con = ConnectionDAO.getConnection();
+				String sql = "delete from test where testName = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, testName);
+				result = ps.executeUpdate();
+				return result;
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return result;
 		}
 }
