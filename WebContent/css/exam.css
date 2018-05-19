@@ -152,7 +152,8 @@ button:hover, a:hover {
 }
 
 .panel{
-    margin-top: -12px;
+    margin-top: 50px;
+    margin-right: 20px;
 }
 /*>>>> Subject title <<<<< */
 
@@ -168,4 +169,7 @@ button:hover, a:hover {
     padding-bottom: 20px;
 }*/
 
-
+.submitBtn{
+	margin-bottom: 20px;
+	margin-left: 10px; 
+}

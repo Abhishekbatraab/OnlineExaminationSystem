@@ -15,11 +15,34 @@
     <link rel="stylesheet" href="css/radiostyle.css">
     <link rel="stylesheet" href="css/exam.css">
     <!-- Icon Library Link -->
-    <link rel="stylesheet" href="css/fontawesome.min.css">    
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- Angular JS -->
+    <script src="js/angular.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script>
+	    const app = angular.module("myapp", []);
+		app.controller('mycontroller', function ($scope) {
+	        //This will hide the DIV by default.
+	        $scope.firstPage = true;
+	        $scope.questionPage = false;
+	        $scope.showQuestionPage = function(){
+	        	$scope.questionPage = true;
+	        	$scope.firstPage = false;
+	        };
+	        
+	    });
+    </script>
+    <script type="text/javaScript">
+			function disableBackButton()
+			{
+			window.history.forward();
+			}
+			setTimeout("disableBackButton()", 0);
+	</script>
+    
 </head>
-<body>
+<body onload="disableBackButton()" ng-app="myapp" ng-controller="mycontroller">
 	<%-- <%
 		UserDTO userdto = (UserDTO) request.getAttribute("userdetails");
 		String emailId = userdto.getEmail();
@@ -49,7 +72,7 @@
             </div>
         </div>        
     </div>
-    <div class="row" id="instructionbox">
+    <div class="row" id="instructionbox" ng-show="firstPage">
         <div class="col-lg-4">
 			<div class="card">
 			  <img src="images/newdp.png" alt="John" style="width:100%">
@@ -68,7 +91,7 @@
                <p class="title">Email: <c:out value="${email}"></c:out></p>
            </div> --%>
         </div>
-        <div class="col-lg-8 instructionpage" id="firstpagediv">
+        <div class="col-lg-8 instructionpage"  id="firstpagediv">
             <h1 class="bg-primary">Instructions Page</h1>
             <div id="instructionContent" class="bg-info">
                 <hr>
@@ -83,30 +106,55 @@
                     <li>The questions carry 1 mark each</li>        
                 </ul>
             </div>
-            <div id="acceptTerms">
-                <input type="checkbox" id="readCheckbox" onclick="goFurther()" autofocus>
+            <!-- <div id="acceptTerms">
+                <input type="checkbox" id="readCheckbox" ng-click=showStartbtn() autofocus>
                 I read all the instructions that are given above in this instruction page
-            </div>
-            <input type= "button" id="startBtn" value="Start Test" class="btn btn-primary" disabled>
+            </div> -->
+            <input type= "button" id="startBtn" value="Start Test" ng-click="showQuestionPage()" class="btn btn-primary" >
             <a href="logout.jsp" class="btn btn-primary">Logout</a>
         </div>
     </div>
     
-    <div class="row quespage" id="quesdiv">
+    <div class="row quespage" ng-show="questionPage" id="quesdiv">
         <div class="col-lg-4">
-            <c:forEach var="queslist" items="${requestScope.questionList}">
-            	<c:out value="${queslist.quesNo}"></c:out>
-				<c:out value="${queslist.question}"></c:out><br>
-				<c:out value="${queslist.optionA}"></c:out><br>
-				<c:out value="${queslist.optionB}"></c:out><br>
-				<c:out value="${queslist.optionC}"></c:out><br>
-				<c:out value="${queslist.optionD}"></c:out><br>
-			</c:forEach>
-		</div>
-        <div class="col-lg-8">
             
-          
-        </div>
+		</div>
+        <div class="col-lg-8 quesdiv">
+ 
+        	<form action="TestController">
+	        	<c:forEach var="queslist" items="${requestScope.questionList}">
+	        		<div class="panel panel-primary">
+						<div class="panel-heading">
+						    <h3 class="panel-title"><c:out value="${queslist.quesNo}"></c:out>&nbsp &nbsp<c:out value="${queslist.question}"></c:out><br></h3>
+						</div>
+						<div class="panel-body">
+							<table>
+								<tbody>
+									<tr>
+										<td>A</td>
+										<td><input type="radio" name="options" value="optionA">&nbsp<c:out value="${queslist.optionA}"></c:out></td>
+									</tr>
+									<tr>
+										<td>B</td>
+										<td><input type="radio" name="options" value="optionB">&nbsp<c:out value="${queslist.optionB}"></c:out></td>
+									</tr>
+									<tr>
+										<td>C</td>
+										<td><input type="radio" name="options" value="optionC">&nbsp<c:out value="${queslist.optionC}"></c:out></td>
+									</tr>
+									<tr>
+										<td>D</td>
+										<td><input type="radio" name="options" value="optionD">&nbsp<c:out value="${queslist.optionD}"></c:out></td>
+									</tr>								
+								</tbody>
+							</table>
+							   
+						</div>
+					</div>
+	        	</c:forEach>
+	        	<input class="btn btn-primary submitBtn" type="submit" value="Submit">
+        	</form>
+	  </div>
     </div>
     <!-- <script src="js/exam.js"></script> -->
 </body>
