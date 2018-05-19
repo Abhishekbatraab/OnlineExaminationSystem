@@ -1,4 +1,6 @@
 <%@page import="java.util.ArrayList, com.bmpl.examviral.quiz.*"%>
+<%@page import="java.util.Arrays, com.bmpl.examviral.quiz.*"%>
+<%@page import="java.util.HashMap, com.bmpl.examviral.quiz.*"%>
 <%@page import="com.bmpl.examviral.quiz.model.dto.UserDTO"%>
 <%@page import="com.bmpl.examviral.quiz.model.dto.QuestionDTO"%>
 <%@page import="com.bmpl.examviral.quiz.model.dao.QuestionDAO"%>
@@ -54,16 +56,59 @@
 	%>  --%>
 	<%
 		ArrayList<QuestionDTO> questionlist  =  (ArrayList<QuestionDTO>) request.getAttribute("questionList");
+		int dataSize = questionlist.size();
 		request.setAttribute("questionList", questionlist);
+		//HashMap<String, String[]> map = new HashMap<String, String[]>();
+		HashMap<Integer, String[]> map = new HashMap<Integer, String[]>();
+		String optionAArray[] = new String[questionlist.size()];
+		String optionBArray[] = new String[questionlist.size()];
+		String optionCArray[] = new String[questionlist.size()];
+		String optionDArray[] = new String[questionlist.size()];
+		String quesArr[] = new String[questionlist.size()];
+		int quesNum[] = new int[questionlist.size()];
+		String option1[] = new String[questionlist.size()];
+		String option2[] = new String[questionlist.size()];
+		String option3[] = new String[questionlist.size()];
+		String option4[] = new String[questionlist.size()];
+		int keys[] = new int[questionlist.size()];
 		UserDTO userdto = (UserDTO)request.getAttribute("userdetails");
 		String emailId = userdto.getEmail();
 		String username = userdto.getUsername();
 		String institutename = userdto.getInstitutename();
 		System.out.println("Institute Name in exam page is "+institutename);
+		for(int i=0,j=i+1,k=j+1,l=k+1; i<questionlist.size();i++){
+			QuestionDTO quesSet = questionlist.get(i);
+			quesArr[i] =quesSet.getQuestion();
+			optionAArray[i]= quesSet.getOptionA();
+			optionBArray[i]= quesSet.getOptionB();
+			optionCArray[i]= quesSet.getOptionC();
+			optionDArray[i]= quesSet.getOptionD();
+			quesNum[i] = quesSet.getQuesNo();
+			System.out.println("Question No is "+quesNum[i]);
+			System.out.println("Question Array is "+quesArr[i]);
+			System.out.println("Option A Array is "+optionAArray[i]);
+			System.out.println("Option B Array is "+optionBArray[i]);
+			System.out.println("Option C Array is "+optionCArray[i]);
+			System.out.println("Option D Array is "+optionDArray[i]);
+			map.put(keys[i], optionAArray);
+			option1 = map.get(keys[i]);
+			System.out.println("Keys of I "+option1[i]);
+			map.put(keys[j], optionBArray);
+			option2 = map.get(keys[j]);
+			System.out.println("Keys of J "+option2[j]);
+			map.put(keys[k], optionCArray);
+			option3 = map.get(keys[k]);
+			System.out.println("Keys of K "+option3[k]);
+			map.put(keys[l], optionDArray);
+			option4 = map.get(keys[l]);
+			System.out.println("Keys of L "+option4[l]);
+		}
+		
 	%>
 	<%-- <c:set var="quesno" value="${requestScope.quizQuesList.quesNo}"></c:set> --%>
 	
     <div class="row">
+    
         <div class="col-lg-12 header">
             <div class="siteLogo">
                 <img src="images/logo.jpg" alt="">
@@ -120,9 +165,44 @@
             
 		</div>
         <div class="col-lg-8 quesdiv">
- 
-        	<form action="TestController">
-	        	<c:forEach var="queslist" items="${requestScope.questionList}">
+ 			<form action="Test?noofquestions=<%= dataSize%>" method="post">
+ 						<%
+ 							for(int i=0;i<keys.length;i++){
+ 						%>	
+ 						<div class="panel panel-primary">
+						<div class="panel-heading">
+						    <h3 class="panel-title"><%= quesNum[i] %>&nbsp &nbsp <%= quesArr[i]%><br></h3>
+						</div>
+						<div class="panel-body">
+							<table>
+								<tbody>
+									
+									<tr>
+										<td>A</td>
+										<td><input type="radio" name="options<%= i %>" value="optionA">&nbsp <%= option1[i] %></td>
+									</tr>
+									<tr>
+										<td>B</td>
+										<td><input type="radio" name="options<%= i %>" value="optionB">&nbsp <%= option2[i] %></td>
+									</tr>
+									<tr>
+										<td>C</td>
+										<td><input type="radio" name="options<%= i %>" value="optionC">&nbsp <%= option3[i] %></td>
+									</tr>
+									<tr>
+										<td>D</td>
+										<td><input type="radio" name="options<%= i %>" value="optionD">&nbsp <%= option4[i] %></td>
+									</tr>								
+								</tbody>
+							</table>
+							   
+						</div>
+					</div>
+ 					
+ 				<%	
+ 					}
+ 				%>
+ 				<%-- <c:forEach var="queslist" items="${requestScope.questionList}">
 	        		<div class="panel panel-primary">
 						<div class="panel-heading">
 						    <h3 class="panel-title"><c:out value="${queslist.quesNo}"></c:out>&nbsp &nbsp<c:out value="${queslist.question}"></c:out><br></h3>
@@ -152,7 +232,8 @@
 						</div>
 					</div>
 	        	</c:forEach>
-	        	<input class="btn btn-primary submitBtn" type="submit" value="Submit">
+	     --%>    	
+	     	<input class="btn btn-primary submitBtn" type="submit" value="Submit">
         	</form>
 	  </div>
     </div>
