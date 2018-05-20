@@ -17,6 +17,7 @@ public class QuestionDAO{
 	int noofrows=0;
 	int result =0 ;
 	ArrayList<QuestionDTO> quizQuesList = new ArrayList<QuestionDTO>();
+	QuestionDTO quesdto = new QuestionDTO();
 	
 	/*public ArrayList<QuestionDTO> getTestData(String testName){
 		try{
@@ -192,23 +193,40 @@ public class QuestionDAO{
 		
 	}
 	
-public int deleteSpecificQuestion(String testName){
-		
+	public int deleteSpecificQuestion(String testName){
+			
+			try {
+				con = ConnectionDAO.getConnection();
+				String sql = "delete from questions where testName = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, testName);
+				int result = ps.executeUpdate();
+				return result;
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return result;
+	}
+	
+	public QuestionDTO getDataComp(String quesName, String testName){
 		try {
 			con = ConnectionDAO.getConnection();
-			String sql = "delete from questions where testName = ?";
+			String sql = "select correctAnswer from questions where question = ? and testName = ?";
 			ps = con.prepareStatement(sql);
-			ps.setString(1, testName);
-			int result = ps.executeUpdate();
-			return result;
+			ps.setString(1, quesName);
+			ps.setString(2, testName);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				System.out.println("correct answer from db is "+rs.getString(1));
+				quesdto.setCorrectAnswer(rs.getString(1));
+				return quesdto;
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return result;
-		
+		return quesdto;
+	}
 	}
 	
-}
-
-

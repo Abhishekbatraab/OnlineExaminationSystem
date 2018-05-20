@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList, com.bmpl.examviral.quiz.*"%>
 <%@page import="java.util.Arrays, com.bmpl.examviral.quiz.*"%>
 <%@page import="java.util.HashMap, com.bmpl.examviral.quiz.*"%>
+<%@page import="java.util.Map, com.bmpl.examviral.quiz.*"%>
 <%@page import="com.bmpl.examviral.quiz.model.dto.UserDTO"%>
 <%@page import="com.bmpl.examviral.quiz.model.dto.QuestionDTO"%>
 <%@page import="com.bmpl.examviral.quiz.model.dao.QuestionDAO"%>
@@ -56,36 +57,48 @@
 	%>  --%>
 	<%
 		ArrayList<QuestionDTO> questionlist  =  (ArrayList<QuestionDTO>) request.getAttribute("questionList");
-		int dataSize = questionlist.size();
 		request.setAttribute("questionList", questionlist);
-		//HashMap<String, String[]> map = new HashMap<String, String[]>();
+		int dataSize = questionlist.size();
+		String testName = (String)request.getAttribute("testName");
 		HashMap<Integer, String[]> map = new HashMap<Integer, String[]>();
-		String optionAArray[] = new String[questionlist.size()];
-		String optionBArray[] = new String[questionlist.size()];
-		String optionCArray[] = new String[questionlist.size()];
-		String optionDArray[] = new String[questionlist.size()];
-		String quesArr[] = new String[questionlist.size()];
-		int quesNum[] = new int[questionlist.size()];
-		String option1[] = new String[questionlist.size()];
-		String option2[] = new String[questionlist.size()];
-		String option3[] = new String[questionlist.size()];
-		String option4[] = new String[questionlist.size()];
-		int keys[] = new int[questionlist.size()];
+		HashMap<Integer, String[]> quesmap = new HashMap<Integer, String[]>();
+		int quesNum[] = new int[dataSize];
+		String quesArr[] = new String[dataSize];
+		String optionAArray[] = new String[dataSize];
+		String optionBArray[] = new String[dataSize];
+		String optionCArray[] = new String[dataSize];
+		String optionDArray[] = new String[dataSize];		
+		String option1[] = new String[dataSize];
+		String option2[] = new String[dataSize];
+		String option3[] = new String[dataSize];
+		String option4[] = new String[dataSize];
+		String ques1[] = new String[dataSize];
+		String ques2[] = new String[dataSize];
+		String ques3[] = new String[dataSize];
+		String ques4[] = new String[dataSize];
+		String ques5[] = new String[dataSize];
+		int keys[] = new int[dataSize];
+		int quesKeys[] = new int[dataSize];
 		UserDTO userdto = (UserDTO)request.getAttribute("userdetails");
 		String emailId = userdto.getEmail();
 		String username = userdto.getUsername();
 		String institutename = userdto.getInstitutename();
 		System.out.println("Institute Name in exam page is "+institutename);
+		
 		for(int i=0,j=i+1,k=j+1,l=k+1; i<questionlist.size();i++){
 			QuestionDTO quesSet = questionlist.get(i);
+			quesNum[i] = quesSet.getQuesNo();
 			quesArr[i] =quesSet.getQuestion();
+			for(String s: quesArr){
+				System.out.println("New Array "+s);
+				
+			}
 			optionAArray[i]= quesSet.getOptionA();
 			optionBArray[i]= quesSet.getOptionB();
 			optionCArray[i]= quesSet.getOptionC();
-			optionDArray[i]= quesSet.getOptionD();
-			quesNum[i] = quesSet.getQuesNo();
+			optionDArray[i]= quesSet.getOptionD();			
 			System.out.println("Question No is "+quesNum[i]);
-			System.out.println("Question Array is "+quesArr[i]);
+			System.out.println("Question "+(i+1)+" is "+quesArr[i]);
 			System.out.println("Option A Array is "+optionAArray[i]);
 			System.out.println("Option B Array is "+optionBArray[i]);
 			System.out.println("Option C Array is "+optionCArray[i]);
@@ -103,7 +116,6 @@
 			option4 = map.get(keys[l]);
 			System.out.println("Keys of L "+option4[l]);
 		}
-		
 	%>
 	<%-- <c:set var="quesno" value="${requestScope.quizQuesList.quesNo}"></c:set> --%>
 	
@@ -146,7 +158,7 @@
                 <p>About Online Test</p>
                 <ul>
                     <li>Test time period is 10 mins</li>
-                    <li>This test consists of 5 Questions</li>
+                    <li>This test consists of <%= dataSize %> Questions</li>
                     <li>The test comprises of Object type questions</li>
                     <li>The questions carry 1 mark each</li>        
                 </ul>
@@ -161,16 +173,15 @@
     </div>
     
     <div class="row quespage" ng-show="questionPage" id="quesdiv">
-        <div class="col-lg-4">
-            
-		</div>
-        <div class="col-lg-8 quesdiv">
- 			<form action="Test?noofquestions=<%= dataSize%>" method="post">
+        <div class="col-lg-12 quesdiv">
+ 			<form action="Test?noofquestions=<%= dataSize%>&testName=<%= testName%>" method="post">
  						<%
  							for(int i=0;i<keys.length;i++){
+ 								
  						%>	
  						<div class="panel panel-primary">
 						<div class="panel-heading">
+							<input type="hidden" name="que<%=i%>" value="<%= quesArr[i]%>"/>
 						    <h3 class="panel-title"><%= quesNum[i] %>&nbsp &nbsp <%= quesArr[i]%><br></h3>
 						</div>
 						<div class="panel-body">
