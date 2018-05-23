@@ -1,8 +1,6 @@
 package com.bmpl.examviral.quiz.controller.testcontrollers;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

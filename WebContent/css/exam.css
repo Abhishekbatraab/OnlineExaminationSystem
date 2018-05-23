@@ -152,6 +152,7 @@ button:hover, a:hover {
 }
 
 .panel{
+	margin-left: 30px;
     margin-top: 50px;
     margin-right: 20px;
 }
@@ -171,5 +172,5 @@ button:hover, a:hover {
 
 .submitBtn{
 	margin-bottom: 20px;
-	margin-left: 10px; 
+	margin-left: 30px; 
 }

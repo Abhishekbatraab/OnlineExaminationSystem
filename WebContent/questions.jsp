@@ -134,6 +134,7 @@
 	              <thead>
 	                <tr>
 	                  <th>Question No.</th>
+	                  <th>Test Name</th>
 	                  <th>Question</th>
 	                  <th>Option A</th>
 	                  <th>Option B</th>
@@ -149,6 +150,7 @@
 	                	 
 	                	<tr>
 							<td><c:out value="${questionList.quesNo}"/></td>
+							<td><c:out value="${questionList.testName}"></c:out></td>
 							<td><c:out value="${questionList.question}"/></td>
 							<td><c:out value="${questionList.optionA}"/></td>
 							<td><c:out value="${questionList.optionB}"></c:out>

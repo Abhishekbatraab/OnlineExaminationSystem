@@ -1,0 +1,119 @@
+@CHARSET "ISO-8859-1";
+body{
+    margin: 0;
+}
+.header{
+    background-color: #A23EF9;
+    height: 100px;
+    width: auto;
+    color: white;
+    border-bottom: 2px solid black;
+}
+
+.header>.col-lg-12>img{
+    float: left;
+    height: 100px;
+    width: 100px;
+    border-bottom: 2px solid black;
+}
+
+.welcome{
+    float: right;
+    margin-right: 50px;
+    margin-top: 35px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.sitename{
+    float: left;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-weight: 500;
+    text-shadow: 
+}
+
+.mainheading{
+    color: white;    
+    float: left;
+    text-align: center;
+    margin-top: 26px;
+    margin-left: 300px;
+}
+
+.leftsidebar, .rightsidebar, .centerside{
+    height: 100%;
+}
+
+/* profile card design */
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+
+.centerside>.h2{
+    text-align: center;
+}
+
+.centerside>p{
+    text-align: left;
+}
+
+.rightsidebar{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.panel{
+    margin-top: 50px;
+}
+
+.panel-title{
+    text-align: center;
+    font-weight: 400;
+}
+
+
+.mainbody{
+    width: inherit;
+}
+
+.chart_div{
+    float: right;
+}
+
+/*@media screen and (max-width: 1200px) {
+ On screens that are 992px or less, set the background color to blue 
+   {
+    background-color: blue;
+  }
+}*/

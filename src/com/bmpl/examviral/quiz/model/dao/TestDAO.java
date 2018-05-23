@@ -113,4 +113,35 @@ public class TestDAO implements ConnectionDAO{
 			}
 			return result;
 		}
+		
+		public TestDTO getSpecificTestData(String testName) throws SQLException{
+			try {
+				con = ConnectionDAO.getConnection();
+				String sql = "select testDuration, minMarks, totalMarks from test where testName = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, testName);
+				rs = ps.executeQuery();
+				while (rs.next()){
+					testdto.setTestDuration(rs.getInt(1));
+					testdto.setMinMarks(rs.getInt(2));
+					testdto.setTotalMarks(rs.getInt(3));
+					return testdto;
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				if(con!=null){
+					con.close();
+				}
+				if(rs!=null){
+					rs.close();
+				}
+				if(ps!=null){
+					ps.close();
+				}
+			}
+			return testdto;
+		}
 }

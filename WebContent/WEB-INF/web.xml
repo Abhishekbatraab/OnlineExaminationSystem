@@ -99,6 +99,14 @@
   <servlet-mapping>
   	<servlet-name>TestController</servlet-name>
   	<url-mapping>/TestController</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>TestScreenController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.testcontrollers.TestScreenController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TestScreenController</servlet-name>
+  	<url-mapping>/TestScreen</url-mapping>
   </servlet-mapping>    
       
   <error-page>

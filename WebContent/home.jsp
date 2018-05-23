@@ -27,11 +27,14 @@
 	UserDTO userdto = new UserDTO();
 	ArrayList<CourseDTO> courselist = coursedao.readCourse();
 	//UserDTO userdto = (UserDTO)request.getAttribute("userdto");
-	String email = (String)session.getAttribute("email");
+	String email = (String)session.getAttribute("email");	
 	userdto = userdao.getSpecificRecord(email);
+	session.setAttribute("userdetails", userdto);
 	String institutename = userdto.getInstitutename();
+	//session.setAttribute("email", email);
 	System.out.println("Institute name in home page is "+institutename);
-	request.setAttribute("institutename", institutename);
+	/* request.setAttribute("institutename", institutename); */
+	request.setAttribute("userdetails", userdto);
 	System.out.println("Username is "+userdto.getUsername());
 	if(courselist.size()>0){
 		request.setAttribute("courseList", courselist);
@@ -86,10 +89,9 @@
             <div class="row">
 	            <div class="col-lg-4 col-sm-6"> 	
 		                <c:forEach var="courseList" items="${requestScope.courseList}">
-		            		
 		            			<p><c:out value="${courseList.title}"/></p>
-	                   			<a href="/OnlineTestProject/Exam?testName=<c:out value="${courseList.title}"/>&instituteName=<c:out value="${requestScope.institutename}"/>" class="thumbnail" id="java">
-	                        	<img src="<c:out value="${courseList.imagePath}"/>" class="img-responsive">
+	                   			<a href="/OnlineTestProject/Exam?testName=<c:out value="${courseList.title}"/>" class="thumbnail" id="java">
+	                        		<img src="<c:out value="${courseList.imagePath}"/>" class="img-responsive">
 	                    		</a>
 	                		
 		                </c:forEach>
