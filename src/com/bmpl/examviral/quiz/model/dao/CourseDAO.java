@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.bmpl.examviral.quiz.commonutils.IRecordCount;
 import com.bmpl.examviral.quiz.model.dto.CourseDTO;
 
 public class CourseDAO implements ConnectionDAO{
@@ -155,6 +156,27 @@ public class CourseDAO implements ConnectionDAO{
 		//System.out.println("Course List fetching from db is "+courseNamesList);
 		return courseNamesList;
 	}
+	
+	public int countTotalRecords(){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "Select count(*) from course";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				result = rs.getInt(1);
+				return result;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	
+	
+	
 	
 	
 

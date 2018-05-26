@@ -41,10 +41,11 @@ public interface LoginDAO extends ConnectionDAO {
 				System.out.println("Email frm db is "+emailDB);
 				System.out.println("pwd frm db is "+passwordDB);
 				System.out.println("role frm db is "+roleDB);
-				if(email.equals(emailDB)&&password.equals(passwordDB)&&roleDB.equals("admin"))
+				if(email.equals(emailDB)&&password.equals(passwordDB)&&role.equals("admin"))
 					return "admin";
-				if(email.equals(emailDB)&&password.equals(passwordDB)&&roleDB.equals("student"))
+				if(email.equals(emailDB)&&password.equals(passwordDB)&&role.equals("student"))
 					return "student";
+				
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

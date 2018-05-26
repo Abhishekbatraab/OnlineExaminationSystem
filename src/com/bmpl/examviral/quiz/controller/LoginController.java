@@ -92,18 +92,24 @@ public class LoginController extends HttpServlet implements LoginDAO {
 							rd.forward(req, resp);
 						}
 						else{
-							req.setAttribute("errorMessage", "Invalid UserName or Password");
-							RequestDispatcher rd = req.getRequestDispatcher("adminLogin.jsp");
-							rd.forward(req, resp);
+							String errorMessage = "Invalid UserName or Password";
+							resp.sendRedirect("adminLogin.jsp?errorMessage="+errorMessage);
 						}
 					}
 					
 				}
 				else{
 					//System.out.println("Some Error");
-					req.setAttribute("errorMessage", "Invalid UserName or Password");
-					RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
-					rd.forward(req, resp);
+					if(role=="student"){
+						String errorMessage = "You can't login to admin login screen, please click on Admin Login link";
+						resp.sendRedirect("login.jsp?errorMessage="+errorMessage);
+					}else if(role=="admin"){
+						String errorMessage = "You can't login to student login screen, please click on Student Login link";
+						resp.sendRedirect("adminLogin.jsp?errorMessage="+errorMessage);
+					}else if(role=="Invalid user credentials"){
+						String errorMessage = "Invalid user credentials";
+						resp.sendRedirect("adminLogin.jsp?errorMessage="+errorMessage);
+					}
 				}
 		}catch(ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block

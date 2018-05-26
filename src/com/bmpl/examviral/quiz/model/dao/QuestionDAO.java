@@ -228,5 +228,24 @@ public class QuestionDAO{
 		}
 		return quesdto;
 	}
+
+	public int countTotalRecords(){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "Select count(*) from questions";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				result = rs.getInt(1);
+				return result;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
+
+}
+	
 	

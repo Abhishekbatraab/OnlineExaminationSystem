@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.bmpl.examviral.quiz.commonutils.IRecordCount;
 import com.bmpl.examviral.quiz.model.dto.TestDTO;
 
-public class TestDAO implements ConnectionDAO{
+public class TestDAO implements ConnectionDAO, IRecordCount{
 		private Connection con=null;
 		private PreparedStatement ps = null;
 		private ResultSet rs = null;
@@ -144,4 +145,23 @@ public class TestDAO implements ConnectionDAO{
 			}
 			return testdto;
 		}
+		
+		public int countTotalRecords(){
+			try {
+				con = ConnectionDAO.getConnection();
+				String sql = "Select count(*) from test";
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while(rs.next()){
+					result = rs.getInt(1);
+					return result;
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return result;
+		}
+
+		
 }

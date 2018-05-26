@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html5>
 <html>
 <head>
@@ -13,9 +14,6 @@
 <script type="text/javascript" src="js/showErrMsg.js"></script>
 </head>
 <body>
-	<%
-		String errormessage = (String)request.getAttribute("errorMessage");
-	%>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		    <div class="container">
 		    <!-- Brand and toggle get grouped for better mobile display -->
@@ -74,7 +72,7 @@
                 <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
             </div>
             <button class="btn btn-primary btn-lg btn-block loginBtn" id="lgBtn" type="submit">Login</button>
-            <span class="badge badge-warning errormsg" id="errMsgDiv"><%= errormessage %></span>
+            <span class="badge badge-warning errormsg" id="errMsgDiv"><c:out value="${param.errorMessage}"></c:out></span>
             </form>
         </div>
         <div class="col-sm-4">

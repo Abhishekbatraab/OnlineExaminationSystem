@@ -23,7 +23,7 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 	PreparedStatement ps;
 	ResultSet rs;
 	UserDTO userdto = new UserDTO();
-	
+	int result = 0;
 	ArrayList<UserDTO> userList = new ArrayList<UserDTO>();
 //	UserDTO userDto = new UserDTO(id, username, email, password, gender, dateofbirth, address, institutename);
 	
@@ -207,4 +207,22 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 		return userdto;
 	}
 	
+	public int countTotalRecords(){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "Select count(*) from users where rolename= ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, "student");
+			rs = ps.executeQuery();
+			while(rs.next()){
+				result = rs.getInt(1);
+				return result;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

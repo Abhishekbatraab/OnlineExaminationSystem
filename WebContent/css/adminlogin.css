@@ -54,3 +54,13 @@ h2{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.badge{
+	padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 100%;
+    color: white;
+    word-wrap: break-word;
+}
