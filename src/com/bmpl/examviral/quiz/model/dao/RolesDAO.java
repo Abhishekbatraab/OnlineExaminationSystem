@@ -5,18 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.bmpl.examviral.quiz.model.dto.UserDTO;
+import com.bmpl.examviral.quiz.model.dto.RolesDTO;
 
 /*
  * Check the roles of user
  */
 public class RolesDAO implements ConnectionDAO{
 	
-	public String checkRole(UserDTO userdto) throws SQLException{
+	public String checkRole(RolesDTO rolesdto) throws SQLException{
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String roleName = userdto.getRoleName();
+		String roleName = rolesdto.getRoleName();
 		try {
 			con = ConnectionDAO.getConnection();
 			String sql = "select roleName from roles where roleName = ?";
@@ -24,7 +24,7 @@ public class RolesDAO implements ConnectionDAO{
 			ps.setString(1, roleName);
 			rs = ps.executeQuery();
 			while(rs.next()){
-				String rolename = rs.getString(2);
+				String rolename = rs.getString("roleName");
 				return rolename;
 			}
 		} catch (ClassNotFoundException | SQLException e) {

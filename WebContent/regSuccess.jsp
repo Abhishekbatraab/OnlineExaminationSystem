@@ -43,8 +43,7 @@
             </div>
             <div class="panel-body">
   				<p>Registration id : <span> <c:out value="${id}"></c:out></span></p>          
-                <p>Email : <span><c:out value="${email}"></c:out></span></p>
-                <p>Password : <span><c:out value="${password}"></c:out></span></p>
+                <p>Your information is successfully send to your email <span><c:out value="${email}"></c:out></span></p>
                 <p>Date Of birth : <span><c:out value="${dateofbirth}"></c:out></span></p>
                 <p>Address : <span><c:out value="${address}"></c:out></span></p>
                 <p>Institute Name : <span><c:out value="${institutename}"></c:out></span></p>

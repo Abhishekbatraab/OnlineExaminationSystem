@@ -149,7 +149,9 @@
  					}
  				%>
  			<input class="btn btn-primary submitBtn" id="submitButton" type="submit" value="Submit">
+ 			<input type="reset" class="btn btn-success" value="Reset">
         	</form>
+        	<a class="btn btn-primary" href="logout.jsp">Logout</a>
 	  </div>
     </div>
 </body>

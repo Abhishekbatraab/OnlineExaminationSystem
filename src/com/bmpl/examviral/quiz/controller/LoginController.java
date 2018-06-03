@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bmpl.examviral.quiz.commonutils.MD5Secure;
 import com.bmpl.examviral.quiz.model.dao.LoginDAO;
 import com.bmpl.examviral.quiz.model.dao.UserDAO;
 import com.bmpl.examviral.quiz.model.dto.LoginDTO;
@@ -38,6 +39,7 @@ public class LoginController extends HttpServlet implements LoginDAO {
     	// TODO Auto-generated method stub
     	String email = req.getParameter("email");
     	String password = req.getParameter("password");
+    	password = MD5Secure.convertToHash(password);
     	String rolename = req.getParameter("role");
     	LoginDTO logindto = new LoginDTO();
     	logindto.setEmail(email);
@@ -108,7 +110,7 @@ public class LoginController extends HttpServlet implements LoginDAO {
 						resp.sendRedirect("adminLogin.jsp?errorMessage="+errorMessage);
 					}else if(role=="Invalid user credentials"){
 						String errorMessage = "Invalid user credentials";
-						resp.sendRedirect("adminLogin.jsp?errorMessage="+errorMessage);
+						resp.sendRedirect("login.jsp?errorMessage="+errorMessage);
 					}
 				}
 		}catch(ClassNotFoundException | SQLException e1) {

@@ -71,6 +71,9 @@
                 </span>
                 <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
             </div>
+            <div class="input-group">
+                <a class="fpwd">Forgot Password?</a>
+            </div>
             <button class="btn btn-primary btn-lg btn-block loginBtn" id="lgBtn" type="submit">Login</button>
             <span class="badge badge-warning errormsg" id="errMsgDiv"><c:out value="${param.errorMessage}"></c:out></span>
             </form>

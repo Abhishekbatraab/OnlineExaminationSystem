@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bmpl.examviral.quiz.commonutils.MD5Secure;
+import com.bmpl.examviral.quiz.commonutils.Mailer;
 import com.bmpl.examviral.quiz.model.dao.RolesDAO;
 import com.bmpl.examviral.quiz.model.dao.UserDAO;
+import com.bmpl.examviral.quiz.model.dto.RolesDTO;
 import com.bmpl.examviral.quiz.model.dto.UserDTO;
 
 /**
@@ -21,7 +24,7 @@ import com.bmpl.examviral.quiz.model.dto.UserDTO;
 @WebServlet("/Registration")
 public class RegisterationController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	
+	RolesDTO rolesdto = new RolesDTO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -42,6 +45,7 @@ public class RegisterationController extends HttpServlet{
 		String username = request.getParameter("user");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		password=MD5Secure.convertToHash(password);
 		String gender = request.getParameter("gender");
 		String dateofbirth = request.getParameter("dob");
 		String address = request.getParameter("address");
@@ -65,13 +69,18 @@ public class RegisterationController extends HttpServlet{
 				rd.forward(request, response);
 			}
 			else{
-				userdto.setRoleName("student");
-				String roleName = rolesdao.checkRole(userdto);
-				userdto.setRoleName(roleName);
-				userdao.addUser(userdto);
-				userdao.insertUserLogin(userdto);
+				rolesdto.setRoleName("student");
+				String roleName = rolesdao.checkRole(rolesdto);
+				rolesdto.setRoleName(roleName);
+				userdao.addUser(userdto, rolesdto);
+				userdao.insertUserLogin(userdto, rolesdto);
 				int userId = userdao.takeUserId(userdto);
 				userdto.setId(userId);
+				final String from = "demomail254@gmail.com";
+				final String senderPassword = "mynewmail2468";
+				String sub = "Student Registeration";
+				String msg = "Your userid is "+userId+"Your email id is "+email;
+				Mailer.send(from, senderPassword, email, sub, msg);
 				request.setAttribute("userdetails", userdto);
 				RequestDispatcher rd = request.getRequestDispatcher("regSuccess.jsp");
 				rd.forward(request, response);				

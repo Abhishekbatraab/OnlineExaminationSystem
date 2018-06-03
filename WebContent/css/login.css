@@ -58,3 +58,8 @@ body{
 .roledropdown{
 	text-align:center;
 }
+
+.fpwd{
+	color: white;
+	cursor: pointer;
+}

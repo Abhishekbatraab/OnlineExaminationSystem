@@ -51,3 +51,6 @@ textarea{
     width: 100%;
 }
 
+#message{
+	color: red;
+}

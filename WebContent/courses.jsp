@@ -36,7 +36,7 @@
 	}
 %>
 
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -55,9 +55,8 @@
   <link href="datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
-  <link href="css/test.css" rel="stylesheet">
-      <!-- Angular JS -->
-    <script src="js/angular.min.js"></script>
+  <!-- Angular JS -->
+  <script src="js/angular.min.js"></script>
     
     <script type="text/javascript">
     	const app = angular.module("myapp", []);
@@ -292,14 +291,14 @@
 	            	<table>
 	            		<tr>
 		            		<td><label for="ImageUpload">Browse Image:</label></td>
-		        			<td><input type="file" value="Browse...." name="uploadimage"/></td></tr>
+		        			<td><input type="file" value="Browse...." name="uploadimage" required/></td></tr>
 	        			<tr>
 		            		<td><label for="datalist">Title:</label></td>
-		        			<td><input id="text" name="coursetitle"/></td>
+		        			<td><input id="text" name="coursetitle" required/></td>
 	        			</tr>
 						<tr>
 		            		<td><label for="title">Details:</label></td>
-		        			<td><textarea class="textareadetails" name="coursedetails" id="title" cols="50px" rows="4"></textarea></td></tr>
+		        			<td><textarea class="textareadetails" name="coursedetails" id="title" cols="50px" rows="4" required></textarea></td></tr>
 	                	<tr>
 	                      <td></td>
 	                      <td>

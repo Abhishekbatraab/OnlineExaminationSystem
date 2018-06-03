@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.bmpl.examviral.quiz.model.dto.RolesDTO;
 //import com.bmpl.examviral.quiz.commonutils.CRUDOperations;
 import com.bmpl.examviral.quiz.model.dto.UserDTO;
 
@@ -138,7 +139,7 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 	/*
 	 * Method for Registering user
 	 */
-	public void addUser(UserDTO userdto)
+	public void addUser(UserDTO userdto, RolesDTO rolesdto)
 			throws SQLException, ClassNotFoundException{
 				Connection con = ConnectionDAO.getConnection();
 				String username = userdto.getUsername();
@@ -148,7 +149,7 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 				String gender = userdto.getGender();
 				String address = userdto.getAddress();
 				String institutename = userdto.getInstitutename();
-				String rolename = userdto.getRoleName();
+				String rolename = rolesdto.getRoleName();
 				String sql = "insert into users(username, password, email, dateofbirth, gender, address, institutename, rolename, registerdate)"
 						+ "values(?,?,?,?,?,?,?,?,current_timestamp) ";
 				System.out.println(sql);
@@ -164,12 +165,12 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 				ps.executeUpdate();
 	}
 	
-	public void insertUserLogin(UserDTO userdto) throws ClassNotFoundException, SQLException{
+	public void insertUserLogin(UserDTO userdto, RolesDTO rolesdto) throws ClassNotFoundException, SQLException{
 		Connection con = ConnectionDAO.getConnection();
 		String username = userdto.getUsername();
 		String password = userdto.getPassword();
 		String email = userdto.getEmail();
-		String rolename = userdto.getRoleName();
+		String rolename = rolesdto.getRoleName();
 		String sql = "insert into userlogin(roleName, username, password, email) values(?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, rolename);
