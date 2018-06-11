@@ -30,7 +30,7 @@
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="index.jsp">Home</a>
                     <li><a href="about.jsp">About</a>
-                    <li><a href="#">Contact</a>
+                    <!-- <li><a href="#">Contact</a> -->
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
                       <ul class="dropdown-menu">

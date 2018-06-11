@@ -41,7 +41,7 @@
 		        </li> -->
 		        <!-- <li><a href="reg.jsp">Sign Up <i class="fas fa-user-plus"></i></a> -->
 		        <li><a href="about.jsp">About</a>
-		        <li><a href="contact.jsp">Contact</a>
+		        <!-- <li><a href="contact.jsp">Contact</a> -->
 		        <li><a href="adminLogin.jsp">Admin Login</a></li>
 		      </ul>
 		      <!-- <form class="navbar-form navbar-right">
@@ -63,17 +63,17 @@
                 <span class="input-group-addon">
                     <i class="fa fa-user-circle"></i>
                 </span>
-                <input type="text" class="form-control" name="email" placeholder="Enter your Email Id" required>
+                <input type="text" class="form-control" name="email" placeholder="Enter your Email Id" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,30}$" required>
             </div><br>
             <div class="input-group pwd">
                 <span class="input-group-addon">
                     <i class="fa fa-key"></i>
                 </span>
-                <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+                <input type="password" class="form-control" name="password" placeholder="Enter your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}" required>
             </div>
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <a class="fpwd">Forgot Password?</a>
-            </div>
+            </div> -->
             <button class="btn btn-primary btn-lg btn-block loginBtn" id="lgBtn" type="submit">Login</button>
             <span class="badge badge-warning errormsg" id="errMsgDiv"><c:out value="${param.errorMessage}"></c:out></span>
             </form>

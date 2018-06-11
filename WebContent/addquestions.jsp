@@ -328,13 +328,13 @@
 					  <div class="form-group">
 					    <label for="question" class="col-sm-2 control-label">Question</label>
 					    <div class="col-sm-10">
-					      <textarea id="question" rows="4" cols="20" name="quesName"></textarea>
+					      <textarea id="question" rows="4" cols="20" name="quesName" required></textarea>
 					    </div>
 					  </div>
 					  
 						<div class="form-group">
 						   <label for="optionA" class="col-sm-2 control-label">Option A</label>
-						   <input type="radio" name="options" id="optA" value="optionA">
+						   <input type="radio" name="options" id="optA" value="optionA" required>
 						   <label for="optA">This is the correct answer</label>
 						   <div class="col-sm-10">
 						      <textarea id="optionA" rows="4" cols="20" name="optionA"></textarea>
@@ -342,7 +342,7 @@
 						</div>
 						<div class="form-group">
 							<label for="optionB" class="col-sm-2 control-label">Option B</label>
-							<input id="optB" type="radio" name="options" value="optionB">
+							<input id="optB" type="radio" name="options" value="optionB" required>
 							<label for="optB">This is the correct answer</label>
 							<div class="col-sm-10">
 						      <textarea id="optionB" rows="4" cols="20" name="optionB"></textarea>
@@ -350,7 +350,7 @@
 					    </div>
 					    <div class="form-group">
 					    	<label for="optionC" class="col-sm-2 control-label">Option C</label>
-					    	<input id="optC" type="radio" name="options" value="optionC">
+					    	<input id="optC" type="radio" name="options" value="optionC" required>
 					    	<label for="optC">This is the correct answer</label>
 							<div class="col-sm-10">
 						      <textarea id="optionC" rows="4" cols="20" name="optionC"></textarea>
@@ -358,7 +358,7 @@
 					    </div>
 					    <div class="form-group">
 					    	<label for="optionD" class="col-sm-2 control-label">Option D</label>
-					    	<input id="optD" type="radio" name="options" value="optionD">
+					    	<input id="optD" type="radio" name="options" value="optionD" required>
 					    	<label for="optD">This is the correct answer</label>
 							<div class="col-sm-10">
 						      <textarea id="optionD" rows="4" cols="20" name="optionD"></textarea>

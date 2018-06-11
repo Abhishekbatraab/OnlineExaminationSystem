@@ -64,9 +64,11 @@ public class RegisterationController extends HttpServlet{
 			boolean doesUserExist = userdao.doesUserExist(userdto);
 			if(doesUserExist){
 				System.out.println("user email already exist, please enter a different email");
-				request.setAttribute("userEmail", email);
+				/*request.setAttribute("userEmail", email);
 				RequestDispatcher rd = request.getRequestDispatcher("alreadyexisterror.jsp");
-				rd.forward(request, response);
+				rd.forward(request, response);*/
+				String errorMessage = "User Already Exist please register with different email";
+				response.sendRedirect("reg.jsp?errorMessage="+errorMessage+"&email="+email);
 			}
 			else{
 				rolesdto.setRoleName("student");
@@ -79,7 +81,7 @@ public class RegisterationController extends HttpServlet{
 				final String from = "demomail254@gmail.com";
 				final String senderPassword = "mynewmail2468";
 				String sub = "Student Registeration";
-				String msg = "Your userid is "+userId+"Your email id is "+email;
+				String msg = "Welcome User "+username+"Your userid is "+userId+"Your email id is "+email;
 				Mailer.send(from, senderPassword, email, sub, msg);
 				request.setAttribute("userdetails", userdto);
 				RequestDispatcher rd = request.getRequestDispatcher("regSuccess.jsp");

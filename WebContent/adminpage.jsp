@@ -161,14 +161,14 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="adminpage.jsp">
             <i class="fa fa-fw fa-users"></i>
-            <span class="nav-link-text">User Accounts</span>
+            <span class="nav-link-text">View Users</span>
           </a>
           
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="viewresult.jsp">
             <i class="fa fa-fw fa-chart"></i>
             <span class="nav-link-text">Result</span>
           </a>
@@ -282,32 +282,33 @@
         <div class="card-header">
           <i class="fa fa-table"></i> List of all registered students</div>
         <div class="card-body">
+        	<p><c:out value="${param.message}"></c:out></p>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>Id</th>
-                  <th>Username</th>
-                  <th>Password</th>
+                  <th>User Name</th>
                   <th>Email</th>
                   <th>Date of birth</th>
                   <th>Gender</th>
                   <th>Address</th>
                   <th>Institute Name</th>
                   <th>Registration Date</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>Id</th>
-                  <th>Username</th>
-                  <th>Password</th>
+                  <th>User Name</th>
                   <th>Email</th>
                   <th>Date of birth</th>
                   <th>Gender</th>
                   <th>Address</th>
                   <th>Institute Name</th>
                   <th>Registration Date</th>
+                  <th>Actions</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -315,13 +316,20 @@
 					<tr>
 						<td><c:out value="${userlist.id}"/></td>
 						<td><c:out value="${userlist.username}"/></td>
-						<td><c:out value="${userlist.password}"/></td>
 						<td><c:out value="${userlist.email}"/></td>
 						<td><c:out value="${userlist.dateofbirth}"/></td>
 						<td><c:out value="${userlist.gender}"/></td>
 						<td><c:out value="${userlist.address}"/></td>
 						<td><c:out value="${userlist.institutename}"/></td>
 						<td><c:out value="${userlist.registerdate}"/></td>
+						<td>
+								<table>
+									<tr>
+										<td class="editbtn"><a href="editusers.jsp?userId=${userlist.id}">Edit</a></td>
+										<td class="deletebtn"><a href="DeleteUser?userId=${userlist.id}">Delete</a></td>
+									</tr>
+								</table>
+						</td>
 					</tr>
 				</c:forEach>
               </tbody>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.bmpl.examviral.quiz.model.dto.CourseDTO;
 import com.bmpl.examviral.quiz.model.dto.RolesDTO;
 //import com.bmpl.examviral.quiz.commonutils.CRUDOperations;
 import com.bmpl.examviral.quiz.model.dto.UserDTO;
@@ -208,6 +209,60 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 		return userdto;
 	}
 	
+	public UserDTO getSpecificRecord(int userId){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "select * from users where id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, userId);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				UserDTO userdto = new UserDTO();
+				userdto.setId(rs.getInt(1));
+				userdto.setUsername(rs.getString(2));
+				userdto.setPassword(rs.getString(3));
+				userdto.setEmail(rs.getString(4));
+				userdto.setDateofbirth(rs.getString(5));
+				userdto.setGender(rs.getString(6));
+				userdto.setAddress(rs.getString(7));
+				userdto.setInstitutename(rs.getString(8));
+				userdto.setRegisterdate(rs.getString(10));
+				System.out.println("Specific record of user is "+userdto);
+				return userdto;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userdto;
+	}
+	
+	public int updateSpecificRecord(UserDTO userdto){
+		try {
+			System.out.println("User dto in update db is "+userdto);
+			con = ConnectionDAO.getConnection();
+			String sql = "update users set username = ?, password = ?, email = ?, dateofbirth = ?, gender = ?, address = ?, institutename = ?, registerdate = ? where id = ? ";
+			java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userdto.getUsername());
+			ps.setString(2, userdto.getPassword());
+			ps.setString(3, userdto.getEmail());
+			ps.setString(4, userdto.getDateofbirth());
+			ps.setString(5, userdto.getGender());
+			ps.setString(6, userdto.getAddress());
+			ps.setString(7, userdto.getInstitutename());
+			ps.setTimestamp(8, date);
+			ps.setInt(9, userdto.getId());
+			result = ps.executeUpdate();
+			return result;
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	public int countTotalRecords(){
 		try {
 			con = ConnectionDAO.getConnection();
@@ -225,5 +280,21 @@ public class UserDAO extends UserDTO implements ConnectionDAO{
 		}
 		return result;
 	}
-
+	/*
+	 * Removing an user
+	 */
+	public int deleteUser(int userId){
+		try {
+			con = ConnectionDAO.getConnection();
+			String sql = "delete from users where id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, userId);
+			result = ps.executeUpdate();
+			return result;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	} 
 }

@@ -55,6 +55,11 @@
   <link href="datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <style>
+  		.h-100 {
+    		height: auto!important;
+		}
+  </style>
   <!-- Angular JS -->
   <script src="js/angular.min.js"></script>
     

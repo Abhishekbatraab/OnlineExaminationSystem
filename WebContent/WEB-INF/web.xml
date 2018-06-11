@@ -107,6 +107,22 @@
   <servlet-mapping>
   	<servlet-name>TestScreenController</servlet-name>
   	<url-mapping>/TestScreen</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>DeleteUserController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.DeleteUserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteUserController</servlet-name>
+  	<url-mapping>/DeleteUser</url-mapping>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>EditUserController</servlet-name>
+  	<servlet-class>com.examviral.quiz.controller.EditUserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditUserController</servlet-name>
+  	<url-mapping>/EditUser</url-mapping>
   </servlet-mapping>    
       
   <error-page>

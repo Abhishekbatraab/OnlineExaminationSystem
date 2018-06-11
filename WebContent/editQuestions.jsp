@@ -302,7 +302,7 @@
        		<div class="updateques">
 	    <form class="form-horizontal" action="EditQuestion?testName=<c:out value="${param.testName}"></c:out>&quesNo=<c:out value="${param.quesNo}"></c:out>" method="post">
 		  <div class="form-group">
-		     <label for="" class="col-sm-2 control-label"></label>
+		     <label for="" class="col-sm-2 control-label">Test Name :</label>
 			 <div class="col-sm-10">
 			      	<label><c:out value="${param.testName}"></c:out></label>
 			 </div>
@@ -310,39 +310,39 @@
 		  <div class="form-group">
 			  <label for="question" class="col-sm-2 control-label">Question</label>
 			  <div class="col-sm-10">
-			      <textarea id="question" rows="4" cols="20" name="quesName"><c:out value='${quesrecord.getQuestion()}'/></textarea>
+			      <textarea id="question" rows="4" cols="20" name="quesName" required><c:out value='${quesrecord.getQuestion()}'/></textarea>
 			  </div>
 		  </div>			  
 		 <div class="form-group">
 		    <label for="optionA" class="col-sm-2 control-label">Option A</label>
-			<input type="radio" id="optA" name="options" value="optionA">
+			<input type="radio" id="optA" name="options" value="optionA" required>
 			<label for="optA">This is the correct answer</label>
 			<div class="col-sm-10">
-			      <textarea id="optionA" rows="4" cols="20" name="optionA"><c:out value='${quesrecord.getOptionA()}'/></textarea>
+			      <textarea id="optionA" rows="4" cols="20" name="optionA" required><c:out value='${quesrecord.getOptionA()}'/></textarea>
 			</div>
 	     </div>
 		 <div class="form-group">
 			<label for="optionB" class="col-sm-2 control-label">Option B</label>
-			<input type="radio" name="options" id="optB" value="optionB">
+			<input type="radio" name="options" id="optB" value="optionB" required>
 			<label for="optB">This is the correct answer</label>
 			<div class="col-sm-10">
-		      <textarea id="optionB" rows="4" cols="20" name="optionB"><c:out value='${quesrecord.getOptionB()}'/></textarea>
+		      <textarea id="optionB" rows="4" cols="20" name="optionB" required><c:out value='${quesrecord.getOptionB()}'/></textarea>
 		    </div>
 		</div>
 		<div class="form-group">
 		   	<label for="optionC" class="col-sm-2 control-label">Option C</label>
-		  	<input id="optC" type="radio" name="options" value="optionC">
+		  	<input id="optC" type="radio" name="options" value="optionC" required>
 		  	<label for="optC">This is the correct answer</label>
 			<div class="col-sm-10">
-		       <textarea id="optionC" rows="4" cols="20" name="optionC"><c:out value='${quesrecord.getOptionC()}'/></textarea>
+		       <textarea id="optionC" rows="4" cols="20" name="optionC" required><c:out value='${quesrecord.getOptionC()}'/></textarea>
 			</div>
 	    </div>
 		<div class="form-group">
 		   	<label for="optionD" class="col-sm-2 control-label">Option D</label>
-		   	<input id="optD" type="radio" name="options" value="optionD">
+		   	<input id="optD" type="radio" name="options" value="optionD" required>
 		   	<label for="optD">This is the correct answer</label>
 			<div class="col-sm-10">
-		       <textarea id="optionD" rows="4" cols="20" name="optionD"><c:out value='${quesrecord.getOptionD()}'/></textarea>
+		       <textarea id="optionD" rows="4" cols="20" name="optionD" required><c:out value='${quesrecord.getOptionD()}'/></textarea>
 		  	</div>
 		 </div>
 		<div class="form-group">

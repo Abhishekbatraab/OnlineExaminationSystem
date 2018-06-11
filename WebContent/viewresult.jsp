@@ -1,4 +1,4 @@
-<%@page import="com.bmpl.examviral.quiz.model.dao.ResultDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.bmpl.examviral.quiz.model.dto.TestDTO" %>
@@ -8,6 +8,8 @@
 <%@ page import="com.bmpl.examviral.quiz.model.dao.CourseDAO" %>
 <%@ page import="com.bmpl.examviral.quiz.model.dao.UserDAO" %>
 <%@ page import="com.bmpl.examviral.quiz.model.dao.QuestionDAO" %>
+<%@page import="com.bmpl.examviral.quiz.model.dao.ResultDAO"%>
+<%@page import="com.bmpl.examviral.quiz.model.dto.ResultDTO"%>
 <%@ page import="java.util.ArrayList"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -15,6 +17,7 @@
 	TestDTO testdto = new TestDTO();
 	UserDAO userdao = new UserDAO();
 	ResultDAO resultdao = new ResultDAO();
+	ResultDTO resultdto = new ResultDTO();
 	QuestionDAO quesdao = new QuestionDAO();
 	CourseDAO coursedao = new CourseDAO();
 	int totalRecords=0;
@@ -25,20 +28,17 @@
 	totalRecords = testdao.countTotalRecords();
 	totalquestions = quesdao.countTotalRecords();
 	totalresults = resultdao.countTotalRecords();
-	ArrayList<CourseDTO> courselist =  coursedao.readCourse();
-	if(courselist.size()>0){
-		request.setAttribute("courselist", courselist);
-		request.setAttribute("message", "");
-		//System.out.println("List of courses"+courselist);
+	ArrayList<ResultDTO> resultlist = resultdao.getAllResults();
+	System.out.println("No of results is "+resultlist.size());
+	if(resultlist.size()==0){
+		System.out.println("No Record Found");
+		String message = "No record Found";
+		request.setAttribute("message", message);
 	}
 	else{
-		request.setAttribute("message", "No records found");
+		request.setAttribute("resultdatalist", resultlist);
+		/* request.setAttribute("coursenamelist", courseNameList); */
 	}
-	int courseId = Integer.parseInt(request.getParameter("courseId"));
-	System.out.println("Course id from url is "+courseId);
-	CourseDTO courserecord = coursedao.getSpecificRecord(courseId);
-	request.setAttribute("courserecord", courserecord);
-	System.out.println("Course record in jsp file"+courserecord);
 %>
 
 <!DOCTYPE html>
@@ -68,28 +68,22 @@
     	const app = angular.module("myapp", []);
         app.controller('mycontroller', function ($scope) {
             //This will hide the DIV by default.
-            $scope.IsVisible = true;
-            $scope.viewcoursevisible = false;
-            $scope.ShowHide = function () {
+            $scope.testdatadiv = true;
+            $scope.AddTestDiv = false;
+            $scope.viewheading = "Manage Tests";
+            $scope.carddiv = true;
+            $scope.showTestDiv = function () {
                 //If DIV is visible it will be hidden and vice versa.
-                $scope.IsVisible = false;
-                $scope.viewcoursevisible = false;
-                $scope.addcoursediv = true;
-                
+                $scope.AddTestDiv = true;
+                $scope.testdatadiv = false;
+                $scope.viewheading = "Add Tests";
+                $scope.carddiv = false;
             }
-            $scope.ShowHideView = function(){
-            	//If DIV is visible it will be hidden and vice versa.
-            	$scope.viewHeading = "View Courses";	
-                $scope.viewcoursevisible = true;
-            	$scope.IsVisible = false;
-            	$scope.addcoursediv = false;
-            	
-            }            
-            
-            $scope.EditDivHideView = function(){
-            	$scope.viewcoursevisible = false;
-            	$scope.IsVisible = true;
-            	$scope.addcoursediv = false;
+            $scope.goBack = function(){
+            	$scope.testdatadiv = true;
+            	$scope.AddTestDiv = false;
+            	$scope.viewheading = "Manage Tests";
+            	$scope.carddiv = true;
             }
        });
     </script>
@@ -116,6 +110,18 @@
             <span class="nav-link-text">Profile</span>
           </a>
         </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tests">
+          <a class="nav-link" href="test.jsp">
+            <i class="fa fa-fw fa-book"></i>
+            <span class="nav-link-text">Test</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Questions">
+          <a class="nav-link" href="questions.jsp">
+            <i class="fa fa-fw fa-question-circle"></i>
+            <span class="nav-link-text">Questions</span>
+          </a>
+        </li>
         <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>
@@ -129,37 +135,27 @@
               <a href="cards.html">Cards</a>
             </li>
           </ul>
-        </li> -->
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-graduation-cap"></i>
-            <span class="nav-link-text">Courses</span>
+            <i class="fa fa-fw fa-file"></i>
+            <span class="nav-link-text">Pages</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-            	<a href="javascript:void(0);" ng-click="ShowHide()">Add Courses<i class="fa fa-fw fa-plus"></i></a>
+              <a href="login.jsp">Login Page</a>
             </li>
             <li>
-              <a href="javascript:void(0);" ng-click="ShowHideView()">View Courses <i class="fa fa-fw fa-eye"></i></a>
+              <a href="reg.jsp">Registration Page</a>
             </li>
             <li>
-              <a href="javascript:void(0);" ng-click="EditDivHideView()">Edit Courses <i class="fa fa-fw fa-pencil"></i></a>
+              <a href="#">Forgot Password Page</a>
+            </li>
+            <li>
+              <a href="#">Blank Page</a>
             </li>
           </ul>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tests">
-          <a class="nav-link" href="test.jsp">
-            <i class="fa fa-fw fa-book"></i>
-            <span class="nav-link-text">Test</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Questions">
-          <a class="nav-link" href="questions.jsp">
-            <i class="fa fa-fw fa-question-circle"></i>
-            <span class="nav-link-text">Questions</span>
-          </a>
-        </li>
-        <!--  
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-sitemap"></i>
@@ -192,9 +188,15 @@
           </ul>
         </li> -->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="courses.jsp">
+            <i class="fa fa-fw fa-graduation-cap"></i>
+            <span class="nav-link-text">Courses</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link" href="adminpage.jsp">
             <i class="fa fa-fw fa-users"></i>
-            <span class="nav-link-text">User Accounts</span>
+            <span class="nav-link-text">view users</span>
           </a>
         </li>
       </ul>
@@ -301,113 +303,50 @@
           </div>
         </div>
       </div>
-      <div ng-show="IsVisible">
-          	  <h1>Edit Course</h1>
-	          <form action="EditCourse?courseId=${courserecord.getcourseId()}" method="post" enctype="multipart/form-data" class="form-signin formcontent" >
-	    	<table>
-	    	 <tr>
-		     	<td><label for="ImageUpload">Browse Image:</label></td>
-		     	<td><input type="file" value="Browse...." name="uploadimage" required/></td>
-		     </tr>
-	         <tr>
-		     	<td><label for="datalist">Title:</label></td>
-		        <td><input id="text" value="<c:out value='${courserecord.getTitle()}'/>" name="coursetitle" required></td>
-		        
-	        </tr>
-			<tr>
-		        <td><label for="title">Details:</label></td>
-		        <td><textarea class="textareadetails" name="coursedetails" id="title" cols="50px" rows="4"  required><c:out value="${courserecord.getDetails()}"></c:out></textarea></td></tr>
-	        <tr>
-				<td></td>
-	            <td>
-	            	<div class="checkbox">
-	                	<input type="submit" name="submit" class="button" value="Update Course" />
-	                </div>
-				</td>
-		 	</tr>
-	      </table>
-	 </form>
-	 <h1><c:out value="${param.message}"></c:out></h1>
-	         
-	       </div>
-	       <div ng-show="addcoursediv">
-          	  <h1>Add Course</h1>
-	          <form action="AddCourse" method="post" enctype="multipart/form-data" class="form-signin formcontent" >
-	            	<table>
-	            		<tr>
-		            		<td><label for="ImageUpload">Browse Image:</label></td>
-		        			<td><input type="file" value="Browse...." name="uploadimage" required/></td></tr>
-	        			<tr>
-		            		<td><label for="datalist">Title:</label></td>
-		        			<td><input id="text" name="coursetitle" required/></td>
-	        			</tr>
-						<tr>
-		            		<td><label for="title">Details:</label></td>
-		        			<td><textarea class="textareadetails" name="coursedetails" id="title" cols="50px" rows="4" required></textarea></td></tr>
-	                	<tr>
-	                      <td></td>
-	                      <td>
-	                           <div class="checkbox">
-	                                <input type="submit" name="submit" class="button" value="Add Course" />
-	                           </div>
-	                      </td>
-	                	</tr>
-	              </table>
-	         </form>
-	         
-	       </div>
-	  <div ng-show="viewcoursevisible">
       <div>
-      	
+      	<h1 class="page-header" ng-model="viewheading">View Results </h1>
 	    <h2><c:out value="${param.message}"></c:out></h2>
       </div>
       <!-- Example DataTables Card-->
-      <div class="card mb-3">
+      <div class="card mb-3" ng-show="carddiv">
         <div class="card-header">
-          <i class="fa fa-table"></i> List of all courses</div>
+          <i class="fa fa-table"></i> List of all Results</div>
         <div class="card-body">
-          <h1 class="page-header" ng-model="viewHeading">{{viewHeading}}</h1>	
-          <div class="table-responsive">
+        	
+          <div class="table-responsive" ng-show="testdatadiv">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>CourseId</th>
-	                  <th>Image</th>
-	                  <th>Title</th>
-	                  <th>Details</th>
-	                  <th>Register Date</th>	              
-	                  <th>Action</th>
+                  <th>Result ID</th>
+	              <th>User name</th>
+	              <th>Email</th>
+	              <th>Marks</th>
+	              <th>Test Date</th>
+	              <th>Test Name</th>	             
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>CourseId</th>
-	                  <th>Image</th>
-	                  <th>Title</th>
-	                  <th>Details</th>
-	                  <th>Register Date</th>	              
-	                  <th>Action</th>
-                </tr>
+                  <th>Result ID</th>
+	              <th>User name</th>
+	              <th>Email</th>
+	              <th>Marks</th>
+	              <th>Test Date</th>
+	              <th>Test Name</th>	        
+	            </tr>
               </tfoot>
               <tbody>
                 <tr><c:out value="${requestScope.message}"></c:out></tr>  	
 	              	
-	                <c:forEach var="courseList" items="${requestScope.courselist}">
+	                <c:forEach var="resultList" items="${requestScope.resultdatalist}">
 	                	 
 	                	<tr>
-							<td><c:out value="${courseList.courseId }"/></td>
-							<td><img src="<c:out value="${courseList.imagePath}"/>"></img></td>
-							<td><c:out value="${courseList.title}"/></td>
-							<td><c:out value="${courseList.details}"/></td>
-							<td><c:out value="${courseList.register_date}"/></td>
-							<td>
-								<table>
-									<tr>
-										<td class="editbtn"><a href="editcourse.jsp?courseId=${courseList.courseId}">Edit</a></td>
-										<td class="deletebtn"><a href="DeleteCourse?courseId=${courseList.courseId}">Delete</a></td>
-									</tr>
-								</table>
-							</td>
+							<td><c:out value="${resultList.resultId}"/></td>
+							<td><c:out value="${resultList.username}"></c:out></td>
+							<td><c:out value="${resultList.email}"/></td>
+							<td><c:out value="${resultList.marks}"/></td>
+							<td><c:out value="${resultList.testDate}"></c:out>
+							<td><c:out value="${resultList.testName}"/></td>
 						</tr>
 					</c:forEach>
               </tbody>
@@ -417,8 +356,7 @@
         </div>
         <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
       </div>
-     </div>
-	 
+      
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html5>
 <html>
 <head>
@@ -44,14 +45,15 @@
 		            <li><a href="adminLogin.jsp">Admin Login</a></li>
 		          </ul>
 		        </li>
-		        <li><a href="reg.jsp">Sign Up <i class="fas fa-user-plus"></i></a>
+		        <li><a href="reg.jsp">Sign Up <i class="fas fa-user-plus"></i></a></li>
+		        <li><label><c:out value="${param.errorMessage}"></c:out></label></li>
 		        </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 	<!--<img alt="" src="http://pecora.asprs.org/wp-content/uploads/2016/08/Pecora-20-Registration-image.jpg">-->
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Register Now</button>
-
+	
 	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">

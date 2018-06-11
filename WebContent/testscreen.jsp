@@ -35,7 +35,7 @@
 		String ques5[] = new String[dataSize];
 		int keys[] = new int[dataSize];
 		int quesKeys[] = new int[dataSize];		
-		for(int i=0,j=i+1,k=j+1,l=k+1; i<questionlist.size();i++){
+		for(int i=0,j=i+1,k=j+1,l=k+1; i<dataSize;i++){
 			QuestionDTO quesSet = questionlist.get(i);
 			quesNum[i] = quesSet.getQuesNo();
 			quesArr[i] =quesSet.getQuestion();
@@ -68,7 +68,7 @@
 		}
 	
 %>    
-<!DOCTYPE html5">
+<!DOCTYPE html5>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">

@@ -73,9 +73,8 @@ public class LoginController extends HttpServlet implements LoginDAO {
 							rd.forward(req, resp);
 						}
 						else{
-							req.setAttribute("errorMessage", "Invalid UserName or Password");
-							RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
-							rd.forward(req, resp);
+							String errorMessage = "Invalid UserName or Password";
+							resp.sendRedirect("login.jsp?errorMessage="+errorMessage);
 						}
 					}else if(role.equals("admin"))
 					{

@@ -370,8 +370,8 @@
 					  <div class="form-group">
 					    <label for="courseidname" class="col-sm-2 control-label">Course Id and Course Name</label>
 					    <div class="col-sm-10">
-					      <select class="form-control" name="courseNameDropDown" id="courseidname">
-									<option>Select Course</option>
+					      <select class="form-control" name="courseNameDropDown" id="courseidname" required>
+									<option >Select Course</option>
 									<c:forEach var="coursenamelist" items="${requestScope.coursenameList}">
 										<option value="${coursenamelist.courseId}">
 											<c:out value="${coursenamelist.courseId}"></c:out> |
@@ -384,26 +384,26 @@
 					  <div class="form-group">
 					    <label for="testname" class="col-sm-2 control-label">Test Name</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="testname" name="testName" placeholder="Same as course Name">
+					      <input type="text" class="form-control" id="testname" name="testName" placeholder="Same as course Name" required>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="testtime" class="col-sm-2 control-label">Test Duration (Minutes)</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="testtime" name="testDuration" placeholder="Enter test duration">
+					      <input type="text" class="form-control" id="testtime" name="testDuration" placeholder="Enter test duration" required>
 					    </div>
 					  </div>
 					  
 						<div class="form-group">
 						   <label for="minmarks" class="col-sm-2 control-label">Minimum Marks</label>
 						   <div class="col-sm-10">
-						      <input type="text" class="form-control" id="minmarks" name="minMarks" placeholder="Enter Minimum Marks">
+						      <input type="text" class="form-control" id="minmarks" name="minMarks" placeholder="Enter Minimum Marks" required>
 						   </div>
 						</div>
 						<div class="form-group">
 							<label for="maxmarks" class="col-sm-2 control-label">Maximum Marks</label>
 							<div class="col-sm-10">
-						      <input type="text" class="form-control" id="maxmarks" name="maxMarks" placeholder="Enter Maximum Marks">
+						      <input type="text" class="form-control" id="maxmarks" name="maxMarks" placeholder="Enter Maximum Marks" required>
 						    </div>
 					    </div>
 						<div class="form-group">

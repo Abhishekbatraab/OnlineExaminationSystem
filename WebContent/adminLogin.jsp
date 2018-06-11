@@ -49,7 +49,7 @@
 		        </li> -->
 		        <!-- <li><a href="reg.jsp">Sign Up <i class="fas fa-user-plus"></i></a> -->
 		        <li><a href="about.jsp">About</a>
-		        <li><a href="contact.jsp">Contact</a>
+		        <!-- <li><a href="contact.jsp">Contact</a> -->
 		        <li><a href="login.jsp">Student Login</a></li>
 		      </ul>
 		      <!-- <form class="navbar-form navbar-right">
@@ -67,10 +67,10 @@
       <form class="form-signin" action="Login?role=admin" method="post">
         <h2 class="form-signin-heading">Admin Login Details</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,30}$" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-       	<a>Forgot Password?</a>        
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}" required>
+       	<!-- <a>Forgot Password?</a> -->        
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <span class="badge badge-warning errormsg" id="errMsgDiv"><c:out value="${param.errorMessage}"></c:out></span>
       </form>
